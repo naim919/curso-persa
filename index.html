@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>فارسی — Curso de Escritura Persa</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0d0700;}
+::-webkit-scrollbar-thumb{background:#5a3010;border-radius:3px;}
+body{font-family:'Crimson Pro',Georgia,serif;background:#0d0700;color:#d8c098;min-height:100vh;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pop{0%{transform:scale(.93);opacity:0;}100%{transform:scale(1);opacity:1;}}
+.fade-up{animation:fadeUp .35s ease both;}
+.pop{animation:pop .22s ease both;}
+input:focus{outline:none!important;border-color:#c48a18!important;}
+
+/* TOP BAR */
+#topbar{background:#0a0500;border-bottom:1px solid #261404;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:52px;position:sticky;top:0;z-index:100;box-shadow:0 2px 18px rgba(0,0,0,.6);}
+#topbar .brand{display:flex;align-items:center;gap:12px;}
+#menu-btn{background:none;border:1px solid #261404;color:#b89060;cursor:pointer;
+  font-size:17px;padding:3px 10px;border-radius:6px;}
+.fa-title{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:24px;color:#c48a18;direction:rtl;}
+.brand-sub{font-size:12px;color:#7a5838;}
+.pgwrap{display:flex;align-items:center;gap:10px;}
+.pglabel{font-size:11px;color:#7a5838;}
+.pgbar{width:88px;height:5px;background:#261404;border-radius:3px;overflow:hidden;}
+.pgfill{height:100%;background:#c48a18;border-radius:3px;transition:width .5s;}
+
+/* LAYOUT */
+#layout{display:flex;max-width:1080px;margin:0 auto;width:100%;}
+
+/* SIDEBAR */
+#sidebar{width:220px;flex-shrink:0;background:#120900;border-right:1px solid #261404;
+  height:calc(100vh - 52px);overflow-y:auto;position:sticky;top:52px;transition:width .2s,overflow .2s;}
+#sidebar.closed{width:0;overflow:hidden;border:none;}
+.sb-head{padding:12px 14px 6px;font-size:10px;font-weight:700;letter-spacing:2.5px;
+  color:#7a5838;text-transform:uppercase;border-bottom:1px solid #261404;}
+.sb-btn{display:block;width:100%;text-align:left;padding:9px 14px;border:none;
+  border-left:3px solid transparent;cursor:pointer;background:transparent;
+  color:#d8c098;font-size:12.5px;font-family:'Crimson Pro',serif;
+  transition:background .15s;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-btn:hover{background:#1c1004;}
+.sb-btn.active{background:#221008;border-left-color:#c48a18;color:#c48a18;}
+.sb-icon{font-size:11px;margin-right:6px;}
+
+/* MAIN */
+#main{flex:1;padding:26px 24px 80px;min-width:0;overflow-y:auto;}
+.ls{font-size:11px;letter-spacing:2.5px;color:#7a5838;text-transform:uppercase;margin-bottom:5px;}
+h1.lt{font-family:'Crimson Pro',serif;font-size:27px;font-weight:600;color:#f0ddb0;
+  border-bottom:1px solid #261404;padding-bottom:12px;margin-bottom:22px;}
+
+/* SECTION LABEL */
+.sec-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;color:#7a5838;
+  text-transform:uppercase;margin-bottom:10px;}
+
+/* ARABIC TEXT helper class */
+.ar{font-family:'Noto Naskh Arabic','Amiri',serif;direction:rtl;}
+.gold{color:#c48a18;}
+
+/* CARDS */
+.card{background:#1c1004;border:1px solid #261404;border-radius:9px;}
+
+/* HERO */
+.letter-hero{display:flex;gap:18px;margin-bottom:24px;flex-wrap:wrap;}
+.letter-big{background:linear-gradient(160deg,#1e0e04,#3d1a00);border:1px solid #4a2808;
+  border-radius:16px;padding:26px 34px;text-align:center;min-width:150px;flex-shrink:0;
+  box-shadow:0 8px 28px rgba(0,0,0,.45);}
+.letter-big .lchar{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:96px;
+  line-height:1;color:#c48a18;direction:rtl;display:block;}
+.letter-big .lname{font-family:'Crimson Pro',serif;font-size:18px;color:#f0ddb0;margin-top:8px;}
+.letter-big .lrom{font-size:13px;color:#b89060;font-style:italic;margin-top:3px;}
+.letter-info{flex:1;min-width:200px;display:flex;flex-direction:column;gap:8px;}
+.info-row{background:#1c1004;border:1px solid #261404;border-radius:8px;padding:11px 14px;}
+.info-row .ir-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;color:#7a5838;
+  text-transform:uppercase;margin-bottom:3px;}
+.info-row .ir-val{font-size:13.5px;color:#d8c098;line-height:1.6;}
+.noconnect{background:#1e1200;border:1px solid #6b4a10;border-radius:8px;
+  padding:10px 14px;font-size:13px;color:#d0a040;}
+
+/* FORMS */
+.forms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;margin-bottom:22px;}
+.form-card{background:#1c1004;border:1px solid #261404;border-radius:9px;padding:12px;text-align:center;}
+.form-card .fc-char{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:42px;
+  color:#f0ddb0;direction:rtl;display:block;line-height:1.2;}
+.form-card .fc-name{font-size:11px;font-weight:700;color:#a87848;margin-top:5px;}
+.form-card .fc-note{font-size:10px;color:#7a5838;margin-top:2px;}
+
+/* POSITIONS */
+.pos-section{margin-bottom:20px;}
+.pos-header{display:flex;align-items:center;gap:10px;border-radius:8px;
+  padding:10px 14px;margin-bottom:10px;}
+.pos-header.init{background:#071507;border:1px solid #1a4a1a;}
+.pos-header.mid{background:#1a0e00;border:1px solid #4a2808;}
+.pos-header.fin{background:#060f1a;border:1px solid #0a3060;}
+.pos-badge{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.pos-badge.init{background:#1a5018;}
+.pos-badge.mid{background:#c48a18;}
+.pos-badge.fin{background:#0a3868;}
+.pos-label{font-size:13px;font-weight:700;}
+.pos-label.init{color:#5abf5a;}
+.pos-label.mid{color:#e0a820;}
+.pos-label.fin{color:#4a9adf;}
+.pos-note{font-size:12px;color:#7a5838;margin-top:2px;}
+.rare-note{background:#1e1200;border:1px solid #5a3800;border-radius:7px;
+  padding:8px 12px;font-size:12.5px;color:#c08830;margin-bottom:8px;}
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px;}
+.ex-card{background:#1c1004;border:1px solid #261404;border-radius:9px;
+  padding:13px 14px;text-align:center;}
+.ex-word{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:34px;direction:rtl;
+  color:#f0ddb0;line-height:1.2;display:block;margin-bottom:4px;}
+.ex-word .hl{color:#c48a18;font-weight:700;}
+.ex-rom{font-size:12.5px;color:#c48a18;font-style:italic;margin-bottom:2px;}
+.ex-mean{font-size:13px;color:#7a5838;}
+
+/* TIP */
+.tip-box{background:#071507;border:1px solid #1a4a1a;border-radius:9px;
+  padding:11px 15px;margin-bottom:22px;font-size:13.5px;color:#70b870;
+  display:flex;gap:9px;line-height:1.65;}
+.tip-icon{font-size:17px;flex-shrink:0;}
+
+/* INTRO */
+.intro-hero{background:linear-gradient(160deg,#1e0e04,#5c2800);border-radius:14px;
+  padding:28px 32px;margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.5);}
+.intro-hero .big-fa{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:72px;
+  color:#c48a18;direction:rtl;display:block;margin-bottom:8px;}
+.intro-hero p{font-size:15px;color:#b89060;}
+.intro-item{background:#1c1004;border:1px solid #261404;border-radius:10px;
+  padding:14px 18px;margin-bottom:11px;display:flex;gap:14px;}
+.intro-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#c48a18;
+  color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.intro-item h3{font-family:'Crimson Pro',serif;font-size:15px;color:#d07070;margin-bottom:4px;}
+.intro-item p{font-size:13.5px;color:#d8c098;line-height:1.65;}
+
+/* FINAL */
+.final-hero{background:linear-gradient(160deg,#1e0e04,#5c1010);border-radius:12px;
+  padding:22px 28px;margin-bottom:24px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.5);}
+.final-hero h2{font-family:'Crimson Pro',serif;font-size:21px;color:#c48a18;margin-bottom:5px;}
+.final-hero p{font-size:14px;color:#b89060;}
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:7px;margin-bottom:24px;}
+.alpha-cell{background:#1c1004;border:1px solid #261404;border-radius:8px;padding:10px 6px;text-align:center;}
+.alpha-cell .al{font-family:'Noto Naskh Arabic',serif;font-size:30px;color:#c48a18;direction:rtl;display:block;}
+.alpha-cell .aln{font-size:10px;font-weight:700;color:#c07070;}
+.alpha-cell .alr{font-size:9.5px;color:#7a5838;}
+.next-steps{background:#1c1004;border:1px solid #261404;border-radius:9px;
+  padding:16px 18px;margin-bottom:20px;}
+.next-steps h3{font-family:'Crimson Pro',serif;color:#d07070;font-size:15px;margin-bottom:8px;}
+.next-steps ol{padding-left:18px;line-height:2.1;font-size:13.5px;color:#d8c098;}
+
+/* PRACTICE */
+.practice-wrap{margin-bottom:22px;}
+.practice-box{background:#1c1004;border:1px solid #4a2808;border-radius:12px;padding:18px 20px;}
+.prac-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.prac-title{font-size:10px;font-weight:700;letter-spacing:2px;color:#7a5838;text-transform:uppercase;}
+.prac-dots{display:flex;gap:4px;}
+.prac-dot{height:8px;border-radius:4px;transition:all .2s;}
+.prac-word-box{background:#120900;border-radius:10px;padding:18px 14px;text-align:center;
+  margin-bottom:14px;border:1px solid #261404;}
+.prac-word{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:46px;direction:rtl;
+  color:#f0ddb0;line-height:1.2;}
+.prac-word .hl{color:#c48a18;font-weight:700;}
+.prac-counter{font-size:11px;color:#7a5838;margin-top:6px;}
+.prac-tip{font-size:12px;color:#7a5838;font-style:italic;margin-bottom:12px;padding:0 4px;}
+.prac-input-lbl{font-size:12.5px;color:#b89060;margin-bottom:6px;}
+.prac-input-row{display:flex;gap:8px;}
+.prac-input{flex:1;padding:9px 13px;border:1px solid #4a2808;border-radius:7px;
+  font-size:14px;font-family:'Crimson Pro',serif;background:#120900;color:#f0ddb0;}
+.prac-btn{background:#c48a18;color:#fff;border:none;border-radius:7px;
+  padding:9px 18px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Crimson Pro',serif;}
+.prac-result-word{background:#120900;border-radius:8px;padding:10px 14px;margin-bottom:12px;text-align:center;}
+.prac-result-word .rw{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:28px;color:#c48a18;direction:rtl;}
+.prac-result-word .rom{font-size:13px;color:#c48a18;font-style:italic;margin:0 8px;}
+.prac-result-word .mng{font-size:13px;color:#7a5838;}
+.prac-next-btn{background:#1c1004;color:#b89060;border:1px solid #4a2808;border-radius:7px;
+  padding:9px 22px;cursor:pointer;font-size:14px;font-family:'Crimson Pro',serif;}
+.prac-start-btn{background:#c48a18;color:#fff;border:none;border-radius:8px;
+  padding:10px 24px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Crimson Pro',serif;}
+.prac-start-info{font-size:13.5px;color:#d8c098;line-height:1.7;margin-bottom:14px;}
+.prac-finish-box{text-align:center;padding:10px 0;}
+.prac-finish-emoji{font-size:40px;margin-bottom:10px;}
+.prac-finish-score{font-family:'Crimson Pro',serif;font-size:20px;color:#c48a18;margin-bottom:6px;}
+.prac-finish-msg{font-size:13.5px;color:#d8c098;margin-bottom:16px;}
+.prac-repeat-btn{background:#120900;color:#b89060;border:1px solid #4a2808;border-radius:7px;
+  padding:8px 20px;cursor:pointer;font-size:13.5px;font-family:'Crimson Pro',serif;}
+.ok-text{font-size:16px;font-weight:700;margin-bottom:8px;color:#5abf5a;text-align:center;}
+.no-text{font-size:16px;font-weight:700;margin-bottom:8px;color:#e05555;text-align:center;}
+
+/* NAV */
+.nav-bar{display:flex;justify-content:space-between;align-items:center;
+  padding-top:20px;border-top:1px solid #261404;}
+.nav-prev,.nav-next{border:none;border-radius:7px;padding:9px 20px;cursor:pointer;
+  font-size:13.5px;font-family:'Crimson Pro',serif;transition:all .15s;}
+.nav-prev{background:#1c1004;color:#d8c098;border:1px solid #4a2808;}
+.nav-prev:disabled{opacity:.35;cursor:default;}
+.nav-next{background:#c48a18;color:#fff;font-weight:700;}
+.nav-next:disabled{background:#1c1004;color:#7a5838;opacity:.4;cursor:default;}
+.nav-dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:260px;}
+.nav-dot{height:7px;border-radius:3.5px;cursor:pointer;transition:all .2s;}
+
+@media(max-width:600px){
+  #main{padding:18px 12px 60px;}
+  .letter-big .lchar{font-size:72px;}
+  h1.lt{font-size:21px;}
+  .brand-sub{display:none;}
+  .sidebar-open #sidebar{position:fixed;top:52px;left:0;bottom:0;z-index:200;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="brand">
+    <button id="menu-btn" onclick="toggleSB()">☰</button>
+    <span class="fa-title">فارسی</span>
+    <span class="brand-sub">Curso de Escritura Persa</span>
+  </div>
+  <div class="pgwrap">
+    <span class="pglabel" id="pglabel">0%</span>
+    <div class="pgbar"><div class="pgfill" id="pgfill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div id="layout">
+  <div id="sidebar">
+    <div class="sb-head">Lecciones</div>
+    <div id="sblist"></div>
+  </div>
+  <div id="main">
+    <div id="content"></div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ─── DATA ────────────────────────────────────────────────────
+const LESSONS = [
+{id:0,title:"Bienvenida al curso",sub:"Lección 0 — Antes de empezar",isIntro:true,
+ intro:[
+  {h:"¿Qué es el persa?",t:"El persa (فارسی — Fārsi) es la lengua oficial de Irán. Lo hablan ~110 millones de personas y tiene más de 1.000 años de tradición poética."},
+  {h:"Se escribe de derecha a izquierda",t:"Al contrario que el español, el persa se escribe y lee de DERECHA → IZQUIERDA. Las líneas también empiezan por el lado derecho."},
+  {h:"Las letras se unen como cursiva",t:"La mayoría de letras conectan con las vecinas. Cada letra tiene hasta 4 formas: aislada, inicial, media y final."},
+  {h:"7 letras 'rompedoras de cadena'",t:"Estas siete letras NO conectan con la siguiente: ا، د، ذ، ر، ز، ژ، و. Aunque estén en mitad de una palabra, la 'cortan'."},
+  {h:"32 letras en total",t:"Las 28 del árabe + 4 exclusivas del persa: پ (pe), چ (che), ژ (zhe) y گ (gaf). Las aprenderás una por una, sin prisas."},
+  {h:"Las vocales cortas no se escriben",t:"En persa estándar, las vocales cortas (a, e, o) no se escriben. Solo las largas ā, i, u. El contexto ayuda a leer."},
+ ],
+ tip:"Este curso va despacio: una letra por lección, con ejemplos en cada posición y práctica acumulativa."
+},
+{id:1,letter:"ا",hlExtra:["آ"],name:"Alef",rom:"ā",
+ sound:"Vocal larga /ā/ o apoyo de vocal corta /a/, /e/, /o/",noConnect:true,
+ desc:"La letra más sencilla: una línea vertical recta, como el número 1. No conecta con la letra siguiente.",
+ write:"Traza una línea recta de arriba hacia abajo. Sin curvas, sin levantar el lápiz.",
+ forms:[{char:"ا",name:"Aislada / Inicial"},{char:"ـا",name:"Media / Final",note:"Después de conectora"}],
+ positions:[
+  {type:"init",note:"La Alef comienza la palabra.",ex:[{w:"اتاق",i:0,r:"otāq",m:"habitación"},{w:"اسب",i:0,r:"asb",m:"caballo"},{w:"ایران",i:0,r:"Irān",m:"Irán"}]},
+  {type:"mid",note:"Después de conectora, recibe la cola (ـا).",ex:[{w:"باد",i:1,r:"bād",m:"viento"},{w:"کار",i:1,r:"kār",m:"trabajo"},{w:"مادر",i:1,r:"mādar",m:"madre"}]},
+  {type:"fin",note:"Misma forma que en posición media.",ex:[{w:"صدا",i:2,r:"sedā",m:"voz"},{w:"دنیا",i:3,r:"donyā",m:"mundo"},{w:"جا",i:1,r:"jā",m:"lugar"}]},
+ ],
+ practice:[
+  {w:"آ",r:"ā",m:"sonido /ā/ largo (alef con madda)",tip:"Esta es la forma آ de alef: vocal /ā/ pura."},
+  {w:"ا",r:"a",m:"alef sola (apoyo vocálico)",tip:"Alef sola suena como vocal inicial."},
+ ],
+ tip:"Alef es la más fácil. Solo una línea. ¡Practica 20 trazos seguidos!"},
+{id:2,letter:"ب",name:"Be",rom:"b",
+ sound:"/b/ como en 'barco'",
+ desc:"Base en forma de barca o cuenco con UN punto debajo. Conecta por los dos lados.",
+ write:"Dibuja la curva horizontal (el cuenco). Añade un punto debajo del centro.",
+ forms:[{char:"ب",name:"Aislada"},{char:"بـ",name:"Inicial"},{char:"ـبـ",name:"Media"},{char:"ـب",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"باد",i:0,r:"bād",m:"viento"},{w:"بهار",i:0,r:"bahār",m:"primavera"},{w:"برادر",i:0,r:"barādar",m:"hermano"}]},
+  {type:"mid",ex:[{w:"سبز",i:1,r:"sabz",m:"verde"},{w:"تبریز",i:1,r:"Tabriz",m:"Tabriz (ciudad)"},{w:"نبات",i:1,r:"nabāt",m:"caramelo"}]},
+  {type:"fin",ex:[{w:"کتاب",i:3,r:"ketāb",m:"libro"},{w:"آب",i:1,r:"āb",m:"agua"},{w:"شب",i:1,r:"shab",m:"noche"}]},
+ ],
+ practice:[
+  {w:"آب",r:"āb",m:"agua",tip:"ā + b. La primera sílaba que aprende todo estudiante."},
+  {w:"با",r:"bā",m:"con (preposición)",tip:"b + ā. Conector muy frecuente en persa."},
+  {w:"باب",r:"bāb",m:"puerta / capítulo",tip:"b + ā + b. ¡La misma letra al inicio y al final!"},
+  {w:"آبا",r:"ābā",m:"antepasados / padres",tip:"ā + b + ā. Dos vocales largas con Be en el medio."},
+ ],
+ tip:"1 punto debajo = B. کتاب (libro), آب (agua). ¡Dos palabras esenciales con Be!"},
+{id:3,letter:"پ",name:"Pe",rom:"p",
+ sound:"/p/ como en 'papel'. Exclusiva del persa, no existe en árabe.",
+ desc:"Misma base que ب (Be), pero con TRES puntos debajo en lugar de uno.",
+ write:"Igual que Be: dibuja el cuenco. Añade tres puntos debajo en triángulo.",
+ forms:[{char:"پ",name:"Aislada"},{char:"پـ",name:"Inicial"},{char:"ـپـ",name:"Media"},{char:"ـپ",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"پدر",i:0,r:"pedar",m:"padre"},{w:"پنجره",i:0,r:"panjare",m:"ventana"},{w:"پرنده",i:0,r:"parande",m:"pájaro"}]},
+  {type:"mid",ex:[{w:"تپه",i:1,r:"tappe",m:"colina"},{w:"سپید",i:1,r:"sepid",m:"blanco"},{w:"نپال",i:1,r:"Nepāl",m:"Nepal"}]},
+  {type:"fin",rare:"پ al final es raro en persa nativo. Aparece en préstamos extranjeros.",ex:[{w:"لپ",i:1,r:"lap",m:"mejilla / regazo"},{w:"تیپ",i:2,r:"tip",m:"estilo"}]},
+ ],
+ practice:[
+  {w:"پا",r:"pā",m:"pie / pierna",tip:"p + ā. ¡La primera palabra con Pe sola!"},
+  {w:"آب",r:"āb",m:"agua",tip:"Repaso: ā + b. Solo Be y Alef."},
+  {w:"باب",r:"bāb",m:"puerta / capítulo",tip:"Repaso: b + ā + b."},
+  {w:"پاپ",r:"pāp",m:"Papa (título)",tip:"p + ā + p. ¡La misma letra dos veces!"},
+  {w:"باپ",r:"bāp",m:"padre (dialectal)",tip:"b + ā + p. Be al inicio, Pe al final."},
+ ],
+ tip:"ب = 1 punto abajo. پ = 3 puntos abajo. ¡Solo los puntos cambian el sonido!"},
+{id:4,letter:"ت",name:"Te",rom:"t",
+ sound:"/t/ como en 'taza'",
+ desc:"Misma base que Be y Pe, pero con DOS puntos ARRIBA.",
+ write:"Dibuja el cuenco (igual que Be). Añade dos puntos arriba, uno al lado del otro.",
+ forms:[{char:"ت",name:"Aislada"},{char:"تـ",name:"Inicial"},{char:"ـتـ",name:"Media"},{char:"ـت",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"تهران",i:0,r:"Tehrān",m:"Teherán"},{w:"توپ",i:0,r:"tup",m:"balón"},{w:"تابستان",i:0,r:"tābestan",m:"verano"}]},
+  {type:"mid",ex:[{w:"کتاب",i:1,r:"ketāb",m:"libro"},{w:"ستاره",i:1,r:"setāre",m:"estrella"},{w:"بیتا",i:2,r:"Bitā",m:"nombre propio"}]},
+  {type:"fin",ex:[{w:"دوست",i:3,r:"dust",m:"amigo/a"},{w:"درخت",i:3,r:"derakht",m:"árbol"},{w:"رفت",i:2,r:"raft",m:"(él/ella) fue"}]},
+ ],
+ practice:[
+  {w:"تا",r:"tā",m:"hasta / mientras",tip:"t + ā. Preposición y conjunción muy frecuente."},
+  {w:"تاب",r:"tāb",m:"columpio / brillo",tip:"t + ā + b. Te + Alef + Be."},
+  {w:"باب",r:"bāb",m:"puerta / capítulo",tip:"Repaso: b + ā + b."},
+  {w:"پات",r:"pāt",m:"tablas (en ajedrez)",tip:"p + ā + t. Pe + Alef + Te."},
+  {w:"باپ",r:"bāp",m:"padre (dialectal)",tip:"Repaso: b + ā + p."},
+ ],
+ tip:"ب = 1 abajo. پ = 3 abajo. ت = 2 ARRIBA. ¡La posición de los puntos lo cambia todo!"},
+{id:5,letter:"ث",name:"Se",rom:"s",
+ sound:"/s/ como en 'sol'. Idéntica a س (Sin) en persa moderno.",
+ desc:"Misma base que ب، پ، ت pero con TRES puntos ARRIBA en triángulo.",
+ write:"Dibuja el cuenco. Añade tres puntos arriba: dos abajo y uno encima, en triángulo.",
+ forms:[{char:"ث",name:"Aislada"},{char:"ثـ",name:"Inicial"},{char:"ـثـ",name:"Media"},{char:"ـث",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"ثروت",i:0,r:"servat",m:"riqueza"},{w:"ثابت",i:0,r:"sābet",m:"estable / fijo"}]},
+  {type:"mid",ex:[{w:"مثل",i:1,r:"mesl",m:"como / igual que"},{w:"مثال",i:1,r:"mesāl",m:"ejemplo"},{w:"لثه",i:1,r:"lase",m:"encía"}]},
+  {type:"fin",ex:[{w:"بحث",i:2,r:"bahs",m:"debate"},{w:"میراث",i:4,r:"mirās",m:"herencia"}]},
+ ],
+ practice:[
+  {w:"ثابت",r:"sābet",m:"estable / fijo",tip:"ث + ā + b + t. ¡Una sola letra nueva, el resto ya los conoces!"},
+  {w:"تاب",r:"tāb",m:"columpio / brillo",tip:"Repaso: t + ā + b."},
+  {w:"باب",r:"bāb",m:"puerta / capítulo",tip:"Repaso: b + ā + b."},
+  {w:"آب",r:"āb",m:"agua",tip:"Repaso rápido: ā + b."},
+ ],
+ tip:"ت = 2 puntos arriba. ث = 3 puntos arriba. En persa moderno suenan IGUAL, como /s/."},
+{id:6,letter:"ج",name:"Jim",rom:"j",
+ sound:"/dʒ/ o /j/ — como 'y' en 'yo' (iraní moderno)",
+ desc:"Una curva que se enrolla hacia dentro y abajo, como un anzuelo. UN punto debajo.",
+ write:"Curva hacia la derecha, baja y se enrolla a la izquierda formando un gancho. Añade un punto debajo.",
+ forms:[{char:"ج",name:"Aislada / Final",note:"Gancho pronunciado"},{char:"جـ",name:"Inicial",note:"Gancho simplificado"},{char:"ـجـ",name:"Media",note:"Muy simplificado"},{char:"ـج",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"جوان",i:0,r:"javān",m:"joven"},{w:"جنگل",i:0,r:"jangal",m:"bosque"},{w:"جهان",i:0,r:"jahān",m:"mundo"}]},
+  {type:"mid",ex:[{w:"نجار",i:1,r:"najār",m:"carpintero"},{w:"پنجره",i:2,r:"panjare",m:"ventana"},{w:"تجربه",i:1,r:"tajrobe",m:"experiencia"}]},
+  {type:"fin",ex:[{w:"برنج",i:3,r:"berenj",m:"arroz"},{w:"گنج",i:2,r:"ganj",m:"tesoro"},{w:"نارنج",i:4,r:"nāranj",m:"naranja"}]},
+ ],
+ practice:[
+  {w:"جا",r:"jā",m:"lugar / sitio",tip:"j + ā. Brevísima y muy usada."},
+  {w:"تاج",r:"tāj",m:"corona",tip:"t + ā + j. Te + Alef + Jim."},
+  {w:"باج",r:"bāj",m:"tributo / peaje",tip:"b + ā + j. Be + Alef + Jim."},
+  {w:"تاب",r:"tāb",m:"columpio / brillo",tip:"Repaso: t + ā + b. Sin Jim."},
+  {w:"ثابت",r:"sābet",m:"estable / fijo",tip:"Repaso: ث + ā + b + t."},
+ ],
+ tip:"برنج (berenj = arroz) — ¡el arroz persa es famoso en todo el mundo! La misma raíz que 'naranja' (نارنج)."},
+{id:7,letter:"چ",name:"Che",rom:"ch",
+ sound:"/tʃ/ como en 'chico'. Exclusiva del persa.",
+ desc:"Misma forma que ج (Jim), pero con TRES puntos debajo en lugar de uno.",
+ write:"Igual que Jim. Añade tres puntos debajo formando un triángulo.",
+ forms:[{char:"چ",name:"Aislada / Final"},{char:"چـ",name:"Inicial"},{char:"ـچـ",name:"Media"},{char:"ـچ",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"چای",i:0,r:"chāy",m:"té"},{w:"چشم",i:0,r:"cheshm",m:"ojo"},{w:"چراغ",i:0,r:"cherāgh",m:"lámpara"}]},
+  {type:"mid",ex:[{w:"بچه",i:1,r:"bache",m:"niño / niña"},{w:"پنچر",i:2,r:"panchar",m:"pinchazo"},{w:"هیچکس",i:2,r:"hichkas",m:"nadie"}]},
+  {type:"fin",ex:[{w:"هیچ",i:2,r:"hich",m:"nada"},{w:"پیچ",i:2,r:"pich",m:"tornillo"},{w:"لنچ",i:2,r:"lanch",m:"almuerzo"}]},
+ ],
+ practice:[
+  {w:"چاپ",r:"chāp",m:"imprenta / impresión",tip:"ch + ā + p. ¡Che al inicio, Pe al final!"},
+  {w:"تاج",r:"tāj",m:"corona",tip:"Repaso: t + ā + j."},
+  {w:"جا",r:"jā",m:"lugar / sitio",tip:"Repaso: j + ā."},
+  {w:"باج",r:"bāj",m:"tributo / peaje",tip:"Repaso: b + ā + j."},
+  {w:"پاچ",r:"pāch",m:"pata trasera (cocina)",tip:"p + ā + ch. Pe + Alef + Che."},
+ ],
+ tip:"چای (chāy = té) es la palabra más hospitalaria del persa. ¡Los iraníes ofrecen té a todo el mundo!"},
+{id:8,letter:"ح",name:"He (faríngeo)",rom:"h",
+ sound:"/h/ faríngeo. En persa cotidiano suena como H suave.",
+ desc:"Misma base curva que ج y چ, pero SIN ningún punto.",
+ write:"Traza la misma curva de Jim/Che. No añadas ningún punto.",
+ forms:[{char:"ح",name:"Aislada / Final"},{char:"حـ",name:"Inicial"},{char:"ـحـ",name:"Media"},{char:"ـح",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"حال",i:0,r:"hāl",m:"estado / situación"},{w:"حرف",i:0,r:"harf",m:"letra / palabra"},{w:"حیوان",i:0,r:"heyvān",m:"animal"}]},
+  {type:"mid",ex:[{w:"بحث",i:1,r:"bahs",m:"debate"},{w:"محل",i:1,r:"mahal",m:"lugar"},{w:"صحبت",i:1,r:"sohbat",m:"conversación"}]},
+  {type:"fin",ex:[{w:"صبح",i:2,r:"sobh",m:"mañana"},{w:"روح",i:2,r:"ruh",m:"alma"},{w:"مسیح",i:3,r:"masih",m:"Mesías"}]},
+ ],
+ practice:[
+  {w:"حاج",r:"hāj",m:"peregrino / el que ha ido a la Meca",tip:"h + ā + j. He + Alef + Jim."},
+  {w:"حجاب",r:"hejāb",m:"velo / pudor",tip:"h + e + j + ā + b. ¡Cuatro letras ya conocidas!"},
+  {w:"چاپ",r:"chāp",m:"imprenta / impresión",tip:"Repaso: ch + ā + p."},
+  {w:"تاج",r:"tāj",m:"corona",tip:"Repaso: t + ā + j."},
+  {w:"باب",r:"bāb",m:"puerta / capítulo",tip:"Repaso: b + ā + b."},
+ ],
+ tip:"ج = 1 punto, چ = 3 puntos, ح = SIN puntos. Siempre fíjate en los puntos (o su ausencia)."},
+{id:9,letter:"خ",name:"Khe",rom:"kh",
+ sound:"/x/ como la 'j' española en 'jamón'.",
+ desc:"Misma base que ح (He), pero con UN punto ARRIBA.",
+ write:"Traza la curva de He. Añade un punto arriba.",
+ forms:[{char:"خ",name:"Aislada / Final"},{char:"خـ",name:"Inicial"},{char:"ـخـ",name:"Media"},{char:"ـخ",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"خانه",i:0,r:"khāne",m:"casa"},{w:"خوب",i:0,r:"khub",m:"bueno"},{w:"خورشید",i:0,r:"khorshid",m:"sol"}]},
+  {type:"mid",ex:[{w:"سخت",i:1,r:"sakht",m:"duro / difícil"},{w:"بخش",i:1,r:"bakhsh",m:"sección"},{w:"رخت",i:1,r:"rakht",m:"ropa"}]},
+  {type:"fin",ex:[{w:"تاریخ",i:4,r:"tārikh",m:"historia"},{w:"شاخ",i:2,r:"shākh",m:"rama"},{w:"میخ",i:2,r:"mikh",m:"clavo"}]},
+ ],
+ practice:[
+  {w:"تخت",r:"takht",m:"trono / cama",tip:"t + akh + t. ¡Te + Khe + Te!"},
+  {w:"باخت",r:"bākht",m:"perdió (verbo bākhtan)",tip:"b + ā + kh + t. Be + Alef + Khe + Te."},
+  {w:"تاخت",r:"tākht",m:"galopó / atacó",tip:"t + ā + kh + t. Te + Alef + Khe + Te."},
+  {w:"حجاب",r:"hejāb",m:"velo / pudor",tip:"Repaso: h + e + j + ā + b."},
+  {w:"حاج",r:"hāj",m:"peregrino",tip:"Repaso: h + ā + j."},
+ ],
+ tip:"خانه (khāne = casa) — una de las palabras persas más usadas. ¡Empieza por aprenderla!"},
+{id:10,letter:"د",name:"Dal",rom:"d",noConnect:true,
+ sound:"/d/ como en 'dado'",
+ desc:"Una pequeña curva en forma de D. NO conecta con la letra siguiente ('rompedora de cadena').",
+ write:"Traza una curva pequeña de arriba a la derecha, bajando y cerrando hacia la izquierda.",
+ forms:[{char:"د",name:"Aislada / Inicial"},{char:"ـد",name:"Media / Final",note:"Después de conectora"}],
+ positions:[
+  {type:"init",ex:[{w:"دست",i:0,r:"dast",m:"mano"},{w:"دریا",i:0,r:"daryā",m:"mar"},{w:"دوست",i:0,r:"dust",m:"amigo/a"}]},
+  {type:"mid",ex:[{w:"مدرسه",i:1,r:"madrase",m:"escuela"},{w:"اندازه",i:2,r:"andāze",m:"tamaño"},{w:"مادر",i:2,r:"mādar",m:"madre"}]},
+  {type:"fin",ex:[{w:"بند",i:2,r:"band",m:"nudo / cuerda"},{w:"سند",i:2,r:"sanad",m:"documento"},{w:"درد",i:2,r:"dard",m:"dolor"}]},
+ ],
+ practice:[
+  {w:"داد",r:"dād",m:"justicia / dio (verbo)",tip:"d + ā + d. La misma letra dos veces."},
+  {w:"باد",r:"bād",m:"viento",tip:"b + ā + d. Be + Alef + Dal."},
+  {w:"آباد",r:"ābād",m:"próspero / habitado",tip:"ā + b + ā + d. ¡4 letras conocidas!"},
+  {w:"تخت",r:"takht",m:"trono / cama",tip:"Repaso: t + akh + t."},
+  {w:"باخت",r:"bākht",m:"perdió",tip:"Repaso: b + ā + kh + t."},
+ ],
+ tip:"Dal es 'rompedora': aunque esté en el medio, la siguiente letra empieza de nuevo. Observa مادر."},
+{id:11,letter:"ذ",name:"Zal",rom:"z",noConnect:true,
+ sound:"/z/ como en 'zoo'. Idéntica a ز (Ze) en persa moderno.",
+ desc:"Misma forma que Dal (د), pero con UN punto arriba.",
+ write:"Traza la misma curva de Dal. Añade un punto arriba.",
+ forms:[{char:"ذ",name:"Aislada / Inicial"},{char:"ـذ",name:"Media / Final"}],
+ positions:[
+  {type:"init",ex:[{w:"ذهن",i:0,r:"zehn",m:"mente / intelecto"},{w:"ذرت",i:0,r:"zorat",m:"maíz"}]},
+  {type:"mid",ex:[{w:"لذت",i:1,r:"lezzat",m:"placer / deleite"},{w:"غذا",i:1,r:"ghazā",m:"comida"},{w:"مذهب",i:1,r:"mazhab",m:"religión"}]},
+  {type:"fin",ex:[{w:"لذیذ",i:3,r:"laziz",m:"delicioso"},{w:"شاذ",i:2,r:"shāz",m:"excepcional"}]},
+ ],
+ practice:[
+  {w:"ذات",r:"zāt",m:"esencia / naturaleza",tip:"z + ā + t. Zal + Alef + Te."},
+  {w:"ذاب",r:"zāb",m:"fusión / derretimiento",tip:"z + ā + b. Zal + Alef + Be."},
+  {w:"داد",r:"dād",m:"justicia / dio",tip:"Repaso: d + ā + d."},
+  {w:"باد",r:"bād",m:"viento",tip:"Repaso: b + ā + d."},
+  {w:"آباد",r:"ābād",m:"próspero",tip:"Repaso: ā + b + ā + d."},
+ ],
+ tip:"د = sin punto. ذ = con punto arriba. En persa ambas suenan /z/. Practica: د ذ د ذ د ذ"},
+{id:12,letter:"ر",name:"Re",rom:"r",noConnect:true,
+ sound:"/r/ vibrante suave",
+ desc:"Una pequeña curva con cola. NO conecta con la siguiente.",
+ write:"Traza un trazo curvo de arriba a la derecha, con una pequeña cola hacia abajo.",
+ forms:[{char:"ر",name:"Aislada / Inicial"},{char:"ـر",name:"Media / Final",note:"Después de conectora"}],
+ positions:[
+  {type:"init",ex:[{w:"رنگ",i:0,r:"rang",m:"color"},{w:"روز",i:0,r:"ruz",m:"día"},{w:"راه",i:0,r:"rāh",m:"camino"}]},
+  {type:"mid",ex:[{w:"مدرسه",i:2,r:"madrase",m:"escuela"},{w:"برگ",i:1,r:"barg",m:"hoja"},{w:"ارزان",i:1,r:"arzān",m:"barato"}]},
+  {type:"fin",ex:[{w:"پسر",i:2,r:"pesar",m:"hijo / chico"},{w:"برادر",i:4,r:"barādar",m:"hermano"},{w:"خواهر",i:4,r:"khāhar",m:"hermana"}]},
+ ],
+ practice:[
+  {w:"بار",r:"bār",m:"carga / vez",tip:"b + ā + r. Be + Alef + Re."},
+  {w:"راد",r:"rād",m:"generoso / noble",tip:"r + ā + d. Re + Alef + Dal."},
+  {w:"خار",r:"khār",m:"espina / zarza",tip:"kh + ā + r. Khe + Alef + Re."},
+  {w:"دار",r:"dār",m:"horca / que tiene",tip:"d + ā + r. Dal + Alef + Re."},
+  {w:"پرتاب",r:"partāb",m:"lanzamiento",tip:"p + r + t + ā + b. ¡5 letras ya conocidas!"},
+ ],
+ tip:"ر vs ز: ر es curva suave, ز tiene un pico arriba. Practica: ر ز ر ز ر ز"},
+{id:13,letter:"ز",name:"Ze",rom:"z",noConnect:true,
+ sound:"/z/ como en 'zoo'",
+ desc:"Igual que Re (ر) pero con un pequeño pico o trazo hacia arriba.",
+ write:"Traza como Re, añade un pequeño pico hacia arriba a la derecha.",
+ forms:[{char:"ز",name:"Aislada / Inicial"},{char:"ـز",name:"Media / Final"}],
+ positions:[
+  {type:"init",ex:[{w:"زبان",i:0,r:"zabān",m:"lengua / idioma"},{w:"زندگی",i:0,r:"zendegi",m:"vida"},{w:"زمستان",i:0,r:"zemestān",m:"invierno"}]},
+  {type:"mid",ex:[{w:"مزه",i:1,r:"maze",m:"sabor"},{w:"نزدیک",i:1,r:"nazdik",m:"cerca"},{w:"بزرگ",i:1,r:"bozorg",m:"grande"}]},
+  {type:"fin",ex:[{w:"روز",i:2,r:"ruz",m:"día"},{w:"نماز",i:3,r:"namāz",m:"rezo / oración"},{w:"ترمز",i:3,r:"tormoz",m:"freno"}]},
+ ],
+ practice:[
+  {w:"راز",r:"rāz",m:"secreto",tip:"r + ā + z. Re + Alef + Ze."},
+  {w:"باز",r:"bāz",m:"abierto / de nuevo / halcón",tip:"b + ā + z. Be + Alef + Ze."},
+  {w:"بازار",r:"bāzār",m:"mercado / bazar",tip:"b + ā + z + ā + r. ¡5 letras, todas conocidas!"},
+  {w:"دراز",r:"derāz",m:"largo",tip:"d + r + ā + z. Dal + Re + Alef + Ze."},
+  {w:"بار",r:"bār",m:"carga / vez",tip:"Repaso: b + ā + r."},
+ ],
+ tip:"زندگی (zendegi = vida) — una de las palabras más bellas del persa."},
+{id:14,letter:"ژ",name:"Zhe",rom:"zh",noConnect:true,
+ sound:"/ʒ/ como la 'j' francesa en 'bonjour'. Exclusiva del persa.",
+ desc:"Igual que Ze (ز) pero con TRES puntos arriba.",
+ write:"Traza la misma forma que Ze. Añade tres puntos arriba.",
+ forms:[{char:"ژ",name:"Aislada / Inicial"},{char:"ـژ",name:"Media / Final"}],
+ positions:[
+  {type:"init",ex:[{w:"ژاپن",i:0,r:"Zhāpon",m:"Japón"},{w:"ژنو",i:0,r:"Zhenev",m:"Ginebra"}]},
+  {type:"mid",rare:"ژ en posición media es muy poco frecuente.",ex:[{w:"پژو",i:1,r:"Pejo",m:"Peugeot"}]},
+  {type:"fin",ex:[{w:"ماساژ",i:4,r:"māsāzh",m:"masaje"},{w:"گاراژ",i:4,r:"gārāzh",m:"garaje"}]},
+ ],
+ note:"ژ aparece casi solo en préstamos (palabras extranjeras). Los ejercicios de esta lección repasan ر y ز para consolidar la diferencia con ژ.",
+ practice:[
+  {w:"بازار",r:"bāzār",m:"mercado / bazar",tip:"Repaso: b + ā + z + ā + r."},
+  {w:"راز",r:"rāz",m:"secreto",tip:"Repaso: r + ā + z."},
+  {w:"باز",r:"bāz",m:"abierto / halcón",tip:"Repaso: b + ā + z."},
+  {w:"دراز",r:"derāz",m:"largo",tip:"Repaso: d + r + ā + z."},
+ ],
+ tip:"ر / ز / ژ: misma base con más puntos. ر = sin pico, ز = 1 pico, ژ = 3 puntos."},
+{id:15,letter:"س",name:"Sin",rom:"s",
+ sound:"/s/ como en 'sol'",
+ desc:"Tres dientecillos pequeños seguidos con cola. Parece una sierra o peine.",
+ write:"Dibuja tres pequeños picos de igual tamaño de derecha a izquierda. Añade una cola a la derecha.",
+ forms:[{char:"س",name:"Aislada"},{char:"سـ",name:"Inicial"},{char:"ـسـ",name:"Media"},{char:"ـس",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"سلام",i:0,r:"salām",m:"hola"},{w:"سیب",i:0,r:"sib",m:"manzana"},{w:"ستاره",i:0,r:"setāre",m:"estrella"}]},
+  {type:"mid",ex:[{w:"دست",i:1,r:"dast",m:"mano"},{w:"مسافر",i:1,r:"mosāfer",m:"viajero"},{w:"بستن",i:1,r:"bastan",m:"cerrar"}]},
+  {type:"fin",ex:[{w:"درس",i:2,r:"dars",m:"lección / clase"},{w:"نفس",i:2,r:"nafas",m:"aliento"},{w:"کلاس",i:3,r:"kelās",m:"aula"}]},
+ ],
+ practice:[
+  {w:"ساز",r:"sāz",m:"instrumento musical",tip:"s + ā + z. Sin + Alef + Ze. ¡Ya conoces todo!"},
+  {w:"دست",r:"dast",m:"mano",tip:"d + s + t. Dal + Sin + Te. Solo 3 letras."},
+  {w:"بار",r:"bār",m:"carga / vez",tip:"Repaso: b + ā + r."},
+  {w:"بازار",r:"bāzār",m:"mercado",tip:"Repaso: b + ā + z + ā + r."},
+  {w:"راز",r:"rāz",m:"secreto",tip:"Repaso: r + ā + z."},
+ ],
+ tip:"سلام (salām = hola) — ¡ya puedes saludar en persa! La primera palabra de cualquier estudiante."},
+{id:16,letter:"ش",name:"Shin",rom:"sh",
+ sound:"/ʃ/ como en 'show' o 'sheriff'",
+ desc:"Misma base que Sin (س), pero con TRES puntos arriba en triángulo.",
+ write:"Dibuja los tres dientes de Sin. Añade tres puntos arriba en triángulo.",
+ forms:[{char:"ش",name:"Aislada"},{char:"شـ",name:"Inicial"},{char:"ـشـ",name:"Media"},{char:"ـش",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"شب",i:0,r:"shab",m:"noche"},{w:"شیر",i:0,r:"shir",m:"leche / león"},{w:"شهر",i:0,r:"shahr",m:"ciudad"}]},
+  {type:"mid",ex:[{w:"کشور",i:1,r:"keshvar",m:"país"},{w:"مشهد",i:1,r:"Mashhad",m:"Mashhad (ciudad)"},{w:"بخشش",i:2,r:"bakhshesh",m:"generosidad"}]},
+  {type:"fin",ex:[{w:"آتش",i:2,r:"ātash",m:"fuego"},{w:"خوش",i:2,r:"khosh",m:"contento"},{w:"نقش",i:2,r:"naghsh",m:"diseño / rol"}]},
+ ],
+ practice:[
+  {w:"شاد",r:"shād",m:"feliz / contento",tip:"sh + ā + d. Shin + Alef + Dal."},
+  {w:"شاخ",r:"shākh",m:"rama / cuerno",tip:"sh + ā + kh. Shin + Alef + Khe."},
+  {w:"ارتش",r:"artesh",m:"ejército",tip:"a + r + t + sh. ¡4 letras ya conocidas!"},
+  {w:"دست",r:"dast",m:"mano",tip:"Repaso: d + s + t."},
+  {w:"ساز",r:"sāz",m:"instrumento musical",tip:"Repaso: s + ā + z."},
+ ],
+ tip:"س = sin puntos (solo dientes). ش = 3 puntos arriba. شب (shab = noche) es muy poética en persa."},
+{id:17,letter:"ص",name:"Sad",rom:"s",
+ sound:"/s/ — igual que س en persa moderno.",
+ desc:"Una curva ovalada cerrada arriba con una 'cabeza' y cola hacia abajo.",
+ write:"Dibuja un óvalo o lazo cerrado con trazo que sube a la derecha. La cola baja a la izquierda.",
+ forms:[{char:"ص",name:"Aislada"},{char:"صـ",name:"Inicial"},{char:"ـصـ",name:"Media"},{char:"ـص",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"صبح",i:0,r:"sobh",m:"mañana"},{w:"صدا",i:0,r:"sedā",m:"voz / sonido"},{w:"صفحه",i:0,r:"safhe",m:"página"}]},
+  {type:"mid",ex:[{w:"نصف",i:1,r:"nesf",m:"mitad"},{w:"فرصت",i:2,r:"forsat",m:"oportunidad"},{w:"مصر",i:1,r:"Mesr",m:"Egipto"}]},
+  {type:"fin",ex:[{w:"خاص",i:2,r:"khās",m:"especial"},{w:"نقص",i:2,r:"naqs",m:"defecto"},{w:"حرص",i:2,r:"hers",m:"codicia"}]},
+ ],
+ practice:[
+  {w:"صبر",r:"sabr",m:"paciencia",tip:"s(ص) + b + r. Sad + Be + Re."},
+  {w:"خاص",r:"khās",m:"especial / particular",tip:"kh + ā + s(ص). Khe + Alef + Sad."},
+  {w:"صاحب",r:"sāheb",m:"dueño / señor",tip:"s(ص) + ā + h + b. ¡4 letras conocidas!"},
+  {w:"شاد",r:"shād",m:"feliz",tip:"Repaso: sh + ā + d."},
+  {w:"ارتش",r:"artesh",m:"ejército",tip:"Repaso: a + r + t + sh."},
+ ],
+ tip:"ص y س suenan igual en persa moderno. ص solo aparece en palabras de origen árabe."},
+{id:18,letter:"ض",name:"Zad",rom:"z",
+ sound:"/z/ — igual que ز en persa moderno.",
+ desc:"Misma base que Sad (ص), pero con UN punto arriba.",
+ write:"Traza la misma forma de Sad. Añade un punto arriba.",
+ forms:[{char:"ض",name:"Aislada"},{char:"ضـ",name:"Inicial"},{char:"ـضـ",name:"Media"},{char:"ـض",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"ضربه",i:0,r:"zarbe",m:"golpe"},{w:"ضروری",i:0,r:"zaruri",m:"necesario"}]},
+  {type:"mid",ex:[{w:"حضور",i:1,r:"hozur",m:"presencia"},{w:"فضا",i:1,r:"fazā",m:"espacio"},{w:"مضر",i:1,r:"mozarr",m:"dañino"}]},
+  {type:"fin",ex:[{w:"مریض",i:3,r:"mariz",m:"enfermo"},{w:"عوض",i:2,r:"avaz",m:"sustituto"},{w:"رقص",i:2,r:"raqs",m:"baile / danza"}]},
+ ],
+ practice:[
+  {w:"رضا",r:"Rezā",m:"Rezā (nombre propio)",tip:"r + z(ض) + ā. Re + Zad + Alef. ¡Nombre muy común en Irán!"},
+  {w:"ارض",r:"arz",m:"tierra / suelo (árabe)",tip:"a + r + z(ض). Alef + Re + Zad."},
+  {w:"حضرت",r:"hazrat",m:"Su Excelencia (título)",tip:"h + z(ض) + r + t. ¡4 letras ya conocidas!"},
+  {w:"خاص",r:"khās",m:"especial",tip:"Repaso: kh + ā + s(ص)."},
+  {w:"صبر",r:"sabr",m:"paciencia",tip:"Repaso: s(ص) + b + r."},
+ ],
+ tip:"ص = sin punto. ض = con 1 punto arriba. Ambas suenan como sus 'hermanas simples' (s y z)."},
+{id:19,letter:"ط",name:"Ta (árabe)",rom:"t",
+ sound:"/t/ — igual que ت en persa moderno.",
+ desc:"Un círculo o lazo con un trazo vertical que sube desde la derecha.",
+ write:"Dibuja un óvalo o lazo. Añade un trazo vertical que sube desde el lado derecho.",
+ forms:[{char:"ط",name:"Aislada"},{char:"طـ",name:"Inicial"},{char:"ـطـ",name:"Media"},{char:"ـط",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"طلا",i:0,r:"talā",m:"oro"},{w:"طبیعت",i:0,r:"tabi'at",m:"naturaleza"},{w:"طوفان",i:0,r:"tufān",m:"tormenta"}]},
+  {type:"mid",ex:[{w:"خطر",i:1,r:"khatar",m:"peligro"},{w:"سطح",i:1,r:"sath",m:"superficie"},{w:"خطاب",i:1,r:"khetāb",m:"discurso"}]},
+  {type:"fin",ex:[{w:"شرط",i:2,r:"shart",m:"condición"},{w:"خط",i:1,r:"khatt",m:"línea / escritura"},{w:"غلط",i:2,r:"ghalat",m:"error"}]},
+ ],
+ practice:[
+  {w:"خط",r:"khatt",m:"línea / escritura",tip:"kh + t(ط). Khe + Ta árabe."},
+  {w:"طاس",r:"tās",m:"calvo / cubilete de dados",tip:"t(ط) + ā + s. Ta + Alef + Sin."},
+  {w:"خطر",r:"khatar",m:"peligro",tip:"kh + t(ط) + r. Khe + Ta + Re."},
+  {w:"شرط",r:"shart",m:"condición",tip:"sh + r + t(ط). Shin + Re + Ta."},
+  {w:"حضرت",r:"hazrat",m:"Su Excelencia",tip:"Repaso: h + z(ض) + r + t."},
+ ],
+ tip:"خط (khatt) significa tanto 'línea' como 'escritura'. ط solo aparece en palabras de origen árabe."},
+{id:20,letter:"ظ",name:"Za (árabe)",rom:"z",
+ sound:"/z/ — igual que ز en persa moderno.",
+ desc:"Misma base que Ta árabe (ط), pero con UN punto arriba.",
+ write:"Traza la misma forma de Ta árabe. Añade un punto arriba.",
+ forms:[{char:"ظ",name:"Aislada"},{char:"ظـ",name:"Inicial"},{char:"ـظـ",name:"Media"},{char:"ـظ",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"ظهر",i:0,r:"zohr",m:"mediodía"},{w:"ظاهر",i:0,r:"zāher",m:"apariencia"}]},
+  {type:"mid",ex:[{w:"نظر",i:1,r:"nazar",m:"opinión / vista"},{w:"حافظه",i:3,r:"hāfeze",m:"memoria"},{w:"منظره",i:2,r:"manzare",m:"paisaje"}]},
+  {type:"fin",ex:[{w:"حافظ",i:3,r:"Hāfez",m:"Hafez (gran poeta persa)"},{w:"لفظ",i:2,r:"lafz",m:"pronunciación"}]},
+ ],
+ note:"ظ aparece casi solo en palabras de origen árabe. Los ejercicios repasan ط y ض para consolidar las formas similares.",
+ practice:[
+  {w:"ضابط",r:"zābet",m:"oficial / agente",tip:"z(ض) + ā + b + t(ط). Repaso de Zad y Ta."},
+  {w:"خط",r:"khatt",m:"línea / escritura",tip:"Repaso: kh + t(ط)."},
+  {w:"شرط",r:"shart",m:"condición",tip:"Repaso: sh + r + t(ط)."},
+  {w:"خطر",r:"khatar",m:"peligro",tip:"Repaso: kh + t(ط) + r."},
+ ],
+ tip:"ط = sin punto, ظ = con punto. Solo aparecen en palabras de origen árabe."},
+{id:21,letter:"ع",name:"Ain",rom:"'",
+ sound:"Parada glotal suave — en persa moderno es casi imperceptible.",
+ desc:"Letra con 4 formas muy distintas entre sí. La forma aislada parece un '3' árabe.",
+ write:"La forma varía mucho por posición. Estúdialas una por una.",
+ forms:[{char:"ع",name:"Aislada",note:"La más reconocible"},{char:"عـ",name:"Inicial",note:"Abierta, conecta"},{char:"ـعـ",name:"Media",note:"Muy simplificada"},{char:"ـع",name:"Final",note:"Vuelve la curva"}],
+ positions:[
+  {type:"init",ex:[{w:"عشق",i:0,r:"eshq",m:"amor"},{w:"عکس",i:0,r:"aks",m:"foto / imagen"},{w:"علم",i:0,r:"elm",m:"ciencia"}]},
+  {type:"mid",ex:[{w:"معلم",i:1,r:"mo'allem",m:"maestro"},{w:"تعجب",i:1,r:"ta'ajob",m:"asombro"},{w:"سعادت",i:1,r:"sa'ādat",m:"felicidad"}]},
+  {type:"fin",ex:[{w:"شروع",i:3,r:"shoru'",m:"comienzo"},{w:"رجوع",i:3,r:"rojo'",m:"regreso"},{w:"موضوع",i:4,r:"mowzu'",m:"tema"}]},
+ ],
+ practice:[
+  {w:"عاج",r:"āj",m:"marfil",tip:"ع + ā + j. Ain + Alef + Jim."},
+  {w:"عار",r:"ār",m:"vergüenza",tip:"ع + ā + r. Ain + Alef + Re."},
+  {w:"ساعت",r:"sā'at",m:"hora / reloj",tip:"s + ā + ع + t. Sin + Alef + Ain + Te."},
+  {w:"عبرت",r:"ebrat",m:"lección / escarmiento",tip:"ع + b + r + t. Ain + Be + Re + Te."},
+  {w:"خطر",r:"khatar",m:"peligro",tip:"Repaso: kh + t(ط) + r."},
+ ],
+ tip:"عشق (eshq = amor) es la palabra más famosa de la poesía persa. Rumi, Hafez y Sa'di escribieron miles de versos sobre el عشق."},
+{id:22,letter:"غ",name:"Ghain",rom:"gh",
+ sound:"/ɣ/ — como la 'r' uvular francesa en 'Paris'.",
+ desc:"Misma base que Ain (ع), pero con UN punto arriba.",
+ write:"Traza la misma forma de Ain. Añade un punto arriba en cada posición.",
+ forms:[{char:"غ",name:"Aislada"},{char:"غـ",name:"Inicial"},{char:"ـغـ",name:"Media"},{char:"ـغ",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"غذا",i:0,r:"ghazā",m:"comida"},{w:"غرب",i:0,r:"gharb",m:"oeste"},{w:"غم",i:0,r:"gham",m:"tristeza"}]},
+  {type:"mid",ex:[{w:"مغز",i:1,r:"maghz",m:"cerebro / nuez"},{w:"بغل",i:1,r:"baghal",m:"abrazo"},{w:"نغمه",i:1,r:"naghme",m:"melodía"}]},
+  {type:"fin",ex:[{w:"چراغ",i:3,r:"cherāgh",m:"lámpara"},{w:"دماغ",i:3,r:"damāgh",m:"nariz"},{w:"باغ",i:2,r:"bāgh",m:"jardín"}]},
+ ],
+ practice:[
+  {w:"غاز",r:"ghāz",m:"ganso",tip:"gh + ā + z. Ghain + Alef + Ze."},
+  {w:"باغ",r:"bāgh",m:"jardín",tip:"b + ā + gh. Be + Alef + Ghain."},
+  {w:"داغ",r:"dāgh",m:"caliente / cicatriz",tip:"d + ā + gh. Dal + Alef + Ghain."},
+  {w:"چراغ",r:"cherāgh",m:"lámpara",tip:"ch + r + ā + gh. ¡4 letras conocidas!"},
+  {w:"ساعت",r:"sā'at",m:"hora / reloj",tip:"Repaso: s + ā + ع + t."},
+ ],
+ tip:"باغ (bāgh = jardín) — los jardines persas son Patrimonio de la Humanidad."},
+{id:23,letter:"ف",name:"Fe",rom:"f",
+ sound:"/f/ como en 'faro'",
+ desc:"Una cabeza circular con cola. UN punto arriba.",
+ write:"Dibuja un círculo pequeño o espiral abierto. Añade un punto arriba y una cola hacia la izquierda.",
+ forms:[{char:"ف",name:"Aislada"},{char:"فـ",name:"Inicial"},{char:"ـفـ",name:"Media"},{char:"ـف",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"فارسی",i:0,r:"Fārsi",m:"persa (el idioma)"},{w:"فردا",i:0,r:"fardā",m:"mañana"},{w:"فصل",i:0,r:"fasl",m:"estación / capítulo"}]},
+  {type:"mid",ex:[{w:"نفس",i:1,r:"nafas",m:"aliento"},{w:"کافه",i:2,r:"kāfe",m:"cafetería"},{w:"افتادن",i:1,r:"oftādan",m:"caer"}]},
+  {type:"fin",ex:[{w:"برف",i:2,r:"barf",m:"nieve"},{w:"حرف",i:2,r:"harf",m:"letra / palabra"},{w:"تعریف",i:4,r:"ta'rif",m:"definición"}]},
+ ],
+ practice:[
+  {w:"صاف",r:"sāf",m:"claro / limpio / liso",tip:"s(ص) + ā + f. Sad + Alef + Fe."},
+  {w:"فارس",r:"Fārs",m:"Fars (provincia de Persia)",tip:"f + ā + r + s. ¡4 letras conocidas!"},
+  {w:"باغ",r:"bāgh",m:"jardín",tip:"Repaso: b + ā + gh."},
+  {w:"داغ",r:"dāgh",m:"caliente / cicatriz",tip:"Repaso: d + ā + gh."},
+  {w:"چراغ",r:"cherāgh",m:"lámpara",tip:"Repaso: ch + r + ā + gh."},
+ ],
+ tip:"فارسی (Fārsi = persa) — ¡ya puedes escribir el nombre del idioma que estás aprendiendo!"},
+{id:24,letter:"ق",name:"Qaf",rom:"q",
+ sound:"/q/ uvular — en persa iraní moderno suena /gh/ como Ghain.",
+ desc:"Similar a Fe (ف) pero con DOS puntos arriba y cola más profunda.",
+ write:"Misma cabeza redonda que Fe. DOS puntos arriba. Cola baja más profundo.",
+ forms:[{char:"ق",name:"Aislada",note:"Cola muy profunda"},{char:"قـ",name:"Inicial"},{char:"ـقـ",name:"Media"},{char:"ـق",name:"Final",note:"Cola profunda"}],
+ positions:[
+  {type:"init",ex:[{w:"قلم",i:0,r:"qalam",m:"pluma / lápiz"},{w:"قهوه",i:0,r:"qahve",m:"café"},{w:"قرن",i:0,r:"qarn",m:"siglo"}]},
+  {type:"mid",ex:[{w:"عاقل",i:2,r:"āghel",m:"sabio"},{w:"نقش",i:1,r:"naghsh",m:"diseño / rol"},{w:"بقیه",i:1,r:"baghiye",m:"el resto"}]},
+  {type:"fin",ex:[{w:"عشق",i:2,r:"eshq",m:"amor"},{w:"شوق",i:2,r:"showq",m:"entusiasmo"},{w:"حق",i:1,r:"haqq",m:"derecho / verdad"}]},
+ ],
+ practice:[
+  {w:"حق",r:"haqq",m:"derecho / verdad",tip:"h + q. He + Qaf. Solo 2 letras."},
+  {w:"دقت",r:"daqqat",m:"precisión / atención",tip:"d + q + t. Dal + Qaf + Te."},
+  {w:"عشق",r:"eshq",m:"amor",tip:"ع + sh + q. Ain + Shin + Qaf."},
+  {w:"صاف",r:"sāf",m:"claro / limpio",tip:"Repaso: s(ص) + ā + f."},
+  {w:"چراغ",r:"cherāgh",m:"lámpara",tip:"Repaso: ch + r + ā + gh."},
+ ],
+ tip:"ف = 1 punto. ق = 2 puntos. قلم (qalam = lápiz) — ¡escribe قلم con un قلم!"},
+{id:25,letter:"ک",name:"Kaf",rom:"k",
+ sound:"/k/ como en 'casa'",
+ desc:"Forma de arco o techo con un pequeño trazo diagonal interior.",
+ write:"Dibuja un trazo curvo en forma de techo. Añade un trazo diagonal pequeño dentro, en la parte superior.",
+ forms:[{char:"ک",name:"Aislada"},{char:"کـ",name:"Inicial"},{char:"ـکـ",name:"Media"},{char:"ـک",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"کتاب",i:0,r:"ketāb",m:"libro"},{w:"کار",i:0,r:"kār",m:"trabajo"},{w:"کوچه",i:0,r:"kuche",m:"callejuela"}]},
+  {type:"mid",ex:[{w:"سکوت",i:1,r:"sokut",m:"silencio"},{w:"نکته",i:1,r:"nokte",m:"punto importante"},{w:"مکالمه",i:1,r:"mokālame",m:"conversación"}]},
+  {type:"fin",ex:[{w:"کمک",i:2,r:"komak",m:"ayuda"},{w:"نزدیک",i:4,r:"nazdik",m:"cerca"},{w:"بزرگ",i:3,r:"bozorg",m:"grande"}]},
+ ],
+ practice:[
+  {w:"خاک",r:"khāk",m:"tierra / polvo / suelo",tip:"kh + ā + k. Khe + Alef + Kaf."},
+  {w:"پاک",r:"pāk",m:"limpio / puro",tip:"p + ā + k. Pe + Alef + Kaf."},
+  {w:"کاج",r:"kāj",m:"árbol de pino",tip:"k + ā + j. Kaf + Alef + Jim."},
+  {w:"درک",r:"darak",m:"comprensión / entendimiento",tip:"d + r + k. Dal + Re + Kaf."},
+  {w:"عشق",r:"eshq",m:"amor",tip:"Repaso: ع + sh + q."},
+ ],
+ tip:"کمک (komak = ayuda) — la misma sílaba al inicio y al final. Muy útil en viajes."},
+{id:26,letter:"گ",name:"Gaf",rom:"g",
+ sound:"/g/ como en 'gato'. Exclusiva del persa.",
+ desc:"Igual que Kaf (ک), pero con DOS trazos diagonales arriba.",
+ write:"Traza la misma forma de Kaf. Añade un segundo trazo diagonal encima del primero.",
+ forms:[{char:"گ",name:"Aislada"},{char:"گـ",name:"Inicial"},{char:"ـگـ",name:"Media"},{char:"ـگ",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"گربه",i:0,r:"gorbe",m:"gato"},{w:"گل",i:0,r:"gol",m:"flor"},{w:"گوش",i:0,r:"gush",m:"oreja"}]},
+  {type:"mid",ex:[{w:"نگاه",i:1,r:"negāh",m:"mirada"},{w:"بگو",i:1,r:"begu",m:"di (imperativo)"},{w:"آگاه",i:2,r:"āgāh",m:"consciente"}]},
+  {type:"fin",ex:[{w:"سنگ",i:2,r:"sang",m:"piedra"},{w:"برگ",i:2,r:"barg",m:"hoja"},{w:"آهنگ",i:3,r:"āhang",m:"canción"}]},
+ ],
+ practice:[
+  {w:"گاز",r:"gāz",m:"gas / llama de gas",tip:"g + ā + z. Gaf + Alef + Ze."},
+  {w:"گداز",r:"godāz",m:"fusión / derretimiento",tip:"g + d + ā + z. Gaf + Dal + Alef + Ze."},
+  {w:"شگاف",r:"shekāf",m:"grieta / fisura",tip:"sh + g + ā + f. ¡4 letras conocidas!"},
+  {w:"خاک",r:"khāk",m:"tierra / polvo",tip:"Repaso: kh + ā + k."},
+  {w:"پاک",r:"pāk",m:"limpio / puro",tip:"Repaso: p + ā + k."},
+ ],
+ tip:"ک = 1 trazo diagonal. گ = 2 trazos. آهنگ (āhang = canción) — ¡busca música iraní en YouTube!"},
+{id:27,letter:"ل",name:"Lam",rom:"l",
+ sound:"/l/ como en 'luna'",
+ desc:"Una línea que sube y se dobla hacia la izquierda con una cola elegante.",
+ write:"Empieza arriba, baja recto, luego dobla hacia la izquierda con una cola.",
+ forms:[{char:"ل",name:"Aislada",note:"Cola pronunciada"},{char:"لـ",name:"Inicial"},{char:"ـلـ",name:"Media"},{char:"ـل",name:"Final",note:"Cola visible"}],
+ positions:[
+  {type:"init",ex:[{w:"لطفاً",i:0,r:"lotfan",m:"por favor"},{w:"لبخند",i:0,r:"labkhand",m:"sonrisa"},{w:"لحظه",i:0,r:"lahze",m:"momento"}]},
+  {type:"mid",ex:[{w:"بلند",i:1,r:"boland",m:"alto / en voz alta"},{w:"علم",i:1,r:"elm",m:"ciencia"},{w:"دلتنگی",i:1,r:"deltangi",m:"nostalgia"}]},
+  {type:"fin",ex:[{w:"دل",i:1,r:"del",m:"corazón"},{w:"مثال",i:3,r:"mesāl",m:"ejemplo"},{w:"سال",i:2,r:"sāl",m:"año"}]},
+ ],
+ practice:[
+  {w:"دل",r:"del",m:"corazón",tip:"d + l. Dal + Lam. ¡Solo 2 letras!"},
+  {w:"گل",r:"gol",m:"flor",tip:"g + l. Gaf + Lam."},
+  {w:"بال",r:"bāl",m:"ala / hombro",tip:"b + ā + l. Be + Alef + Lam."},
+  {w:"خال",r:"khāl",m:"lunar / peca",tip:"kh + ā + l. Khe + Alef + Lam."},
+  {w:"پل",r:"pol",m:"puente",tip:"p + l. Pe + Lam."},
+  {w:"گاز",r:"gāz",m:"gas",tip:"Repaso: g + ā + z."},
+ ],
+ tip:"دلتنگی (deltangi = nostalgia) es literalmente 'corazón apretado'. ¡La poesía persa vive en sus palabras!"},
+{id:28,letter:"م",name:"Mim",rom:"m",
+ sound:"/m/ como en 'mar'",
+ desc:"Un pequeño lazo o círculo cerrado con una cola que baja.",
+ write:"Dibuja un pequeño nudo o círculo cerrado. Añade una cola que baja a la izquierda.",
+ forms:[{char:"م",name:"Aislada",note:"Lazo completo"},{char:"مـ",name:"Inicial"},{char:"ـمـ",name:"Media",note:"Muy simplificado"},{char:"ـم",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"مادر",i:0,r:"mādar",m:"madre"},{w:"مهمان",i:0,r:"mehmān",m:"invitado"},{w:"مدرسه",i:0,r:"madrase",m:"escuela"}]},
+  {type:"mid",ex:[{w:"سماور",i:1,r:"samāvar",m:"samovar"},{w:"هنرمند",i:3,r:"honarmand",m:"artista"},{w:"کمک",i:1,r:"komak",m:"ayuda"}]},
+  {type:"fin",ex:[{w:"آدم",i:2,r:"ādam",m:"persona / Adán"},{w:"قلم",i:2,r:"qalam",m:"pluma"},{w:"خانم",i:3,r:"khānom",m:"señora"}]},
+ ],
+ practice:[
+  {w:"مال",r:"māl",m:"propiedad / riqueza",tip:"m + ā + l. Mim + Alef + Lam."},
+  {w:"دام",r:"dām",m:"trampa",tip:"d + ā + m. Dal + Alef + Mim."},
+  {w:"سلام",r:"salām",m:"hola / paz",tip:"s + l + ā + m. ¡4 letras, todas conocidas!"},
+  {w:"دل",r:"del",m:"corazón",tip:"Repaso: d + l."},
+  {w:"بال",r:"bāl",m:"ala / hombro",tip:"Repaso: b + ā + l."},
+  {w:"گل",r:"gol",m:"flor",tip:"Repaso: g + l."},
+ ],
+ tip:"من (man = yo) y ما (mā = nosotros). Las primeras palabras esenciales del persa."},
+{id:29,letter:"ن",name:"Nun",rom:"n",
+ sound:"/n/ como en 'noche'",
+ desc:"Un cuenco pequeño con UN punto ARRIBA. Similar a Be (ب) pero el punto va arriba, no abajo.",
+ write:"Dibuja un cuenco redondo. Añade un punto arriba (no abajo como en Be).",
+ forms:[{char:"ن",name:"Aislada",note:"Cuenco profundo"},{char:"نـ",name:"Inicial"},{char:"ـنـ",name:"Media",note:"Parecido a Be medial"},{char:"ـن",name:"Final"}],
+ positions:[
+  {type:"init",ex:[{w:"نان",i:0,r:"nān",m:"pan"},{w:"نور",i:0,r:"nur",m:"luz"},{w:"نقاش",i:0,r:"naqqāsh",m:"pintor"}]},
+  {type:"mid",note:"En posición media se parece a Be (ب). ¡Fíjate en si el punto está arriba o abajo!",ex:[{w:"کنار",i:1,r:"kenār",m:"lado / orilla"},{w:"منظره",i:1,r:"manzare",m:"paisaje"},{w:"سنگ",i:1,r:"sang",m:"piedra"}]},
+  {type:"fin",ex:[{w:"من",i:1,r:"man",m:"yo"},{w:"زمین",i:3,r:"zamin",m:"tierra / suelo"},{w:"آسمان",i:4,r:"āsmān",m:"cielo"}]},
+ ],
+ practice:[
+  {w:"نان",r:"nān",m:"pan",tip:"n + ā + n. ¡La misma letra dos veces!"},
+  {w:"سنگ",r:"sang",m:"piedra / roca",tip:"s + n + g. Sin + Nun + Gaf."},
+  {w:"کنار",r:"kenār",m:"lado / orilla",tip:"k + n + ā + r. Kaf + Nun + Alef + Re."},
+  {w:"نماز",r:"namāz",m:"rezo / oración",tip:"n + m + ā + z. ¡4 letras conocidas!"},
+  {w:"دانش",r:"dānesh",m:"conocimiento / saber",tip:"d + ā + n + sh. Dal + Alef + Nun + Shin."},
+  {w:"سلام",r:"salām",m:"hola / paz",tip:"Repaso: s + l + ā + m."},
+ ],
+ tip:"ب vs ن: ب tiene punto ABAJO, ن tiene punto ARRIBA. Practica: ب ن ب ن ب ن ¡10 veces!"},
+{id:30,letter:"و",name:"Vav",rom:"v",noConnect:true,
+ sound:"Consonante /v/ · Vocal larga /u/ o /o/ · Conjunción 'y'",
+ desc:"Una pequeña curva con cabeza redonda y cola. NO conecta con la letra siguiente.",
+ write:"Traza un trazo curvo hacia la derecha, con cabeza redondeada arriba y cola abajo.",
+ forms:[{char:"و",name:"Aislada / Inicial"},{char:"ـو",name:"Media / Final",note:"Después de conectora"}],
+ positions:[
+  {type:"init",ex:[{w:"وقت",i:0,r:"vaqt",m:"tiempo / hora"},{w:"ورزش",i:0,r:"varzesh",m:"deporte"},{w:"ویژه",i:0,r:"vizhe",m:"especial"}]},
+  {type:"mid",ex:[{w:"نور",i:1,r:"nur",m:"luz"},{w:"کوه",i:1,r:"kuh",m:"montaña"},{w:"دوست",i:1,r:"dust",m:"amigo/a"}]},
+  {type:"fin",ex:[{w:"او",i:1,r:"u",m:"él / ella"},{w:"برو",i:2,r:"boro",m:"ve (imperativo)"},{w:"بشو",i:2,r:"besho",m:"sé / conviértete"}]},
+ ],
+ practice:[
+  {w:"نور",r:"nur",m:"luz",tip:"n + u + r. Nun + Vav(vocal) + Re."},
+  {w:"دود",r:"dud",m:"humo",tip:"d + u + d. Dal + Vav + Dal."},
+  {w:"دوست",r:"dust",m:"amigo / amiga",tip:"d + u + s + t. ¡4 letras conocidas!"},
+  {w:"بانو",r:"bānu",m:"señora / dama",tip:"b + ā + n + u. Be + Alef + Nun + Vav."},
+  {w:"نان",r:"nān",m:"pan",tip:"Repaso: n + ā + n."},
+  {w:"دانش",r:"dānesh",m:"conocimiento",tip:"Repaso: d + ā + n + sh."},
+ ],
+ tip:"و sola significa 'y' (conjunción). نان و آب = 'pan y agua'. Una de las palabras más frecuentes en persa."},
+{id:31,letter:"ه",name:"He",rom:"h",
+ sound:"Consonante /h/ suave · Al final de palabra suele sonar /e/ (vocal)",
+ desc:"Tiene formas bastante distintas según su posición. La forma final (-ه) es la más frecuente.",
+ write:"Forma aislada: doble bucle. Inicial: estrella o triángulo. Media: nudo simple. Final: bucle simple.",
+ forms:[{char:"ه",name:"Aislada",note:"Doble bucle"},{char:"هـ",name:"Inicial",note:"Estrella / triángulo"},{char:"ـهـ",name:"Media",note:"Nudo simple"},{char:"ـه",name:"Final",note:"Bucle — muy frecuente"}],
+ positions:[
+  {type:"init",ex:[{w:"هفت",i:0,r:"haft",m:"siete"},{w:"هوا",i:0,r:"havā",m:"aire / clima"},{w:"هنر",i:0,r:"honar",m:"arte"}]},
+  {type:"mid",ex:[{w:"بهار",i:1,r:"bahār",m:"primavera"},{w:"مهم",i:1,r:"mohem",m:"importante"},{w:"شهر",i:1,r:"shahr",m:"ciudad"}]},
+  {type:"fin",note:"Al final suena /e/, no /h/. Es una de las terminaciones más comunes del persa.",ex:[{w:"خانه",i:3,r:"khāne",m:"casa"},{w:"نامه",i:3,r:"nāme",m:"carta"},{w:"بچه",i:2,r:"bache",m:"niño/a"}]},
+ ],
+ practice:[
+  {w:"شهر",r:"shahr",m:"ciudad",tip:"sh + h + r. Shin + He + Re."},
+  {w:"مهم",r:"mohem",m:"importante",tip:"m + h + m. Mim + He + Mim."},
+  {w:"نامه",r:"nāme",m:"carta / nombre (en compuestos)",tip:"n + ā + m + h(ه). La ه final suena /e/."},
+  {w:"خانه",r:"khāne",m:"casa",tip:"kh + ā + n + h(ه). La ه final suena /e/."},
+  {w:"دوست",r:"dust",m:"amigo / amiga",tip:"Repaso: d + u + s + t."},
+  {w:"نور",r:"nur",m:"luz",tip:"Repaso: n + u + r."},
+ ],
+ tip:"خانه (khāne = casa) — la ـه final suena /e/. ¡Ocurre en muchísimos sustantivos persas!"},
+{id:32,letter:"ی",name:"Ye",rom:"y",
+ sound:"Consonante /j/ (como 'y' en 'yo') · Vocal larga /i/ (como 'sí')",
+ desc:"Conecta por los dos lados. En persa moderno, la forma aislada/final no lleva los dos puntos del árabe (ي→ی).",
+ write:"En inicial: trazo que conecta. En final/aislada: curva que baja con pequeña cola.",
+ forms:[{char:"ی",name:"Aislada / Final",note:"Sin puntos en persa moderno"},{char:"یـ",name:"Inicial"},{char:"ـیـ",name:"Media"},{char:"ـی",name:"Final",note:"La forma más frecuente"}],
+ positions:[
+  {type:"init",ex:[{w:"یک",i:0,r:"yek",m:"uno"},{w:"یاد",i:0,r:"yād",m:"recuerdo"},{w:"یعنی",i:0,r:"ya'ni",m:"es decir / significa"}]},
+  {type:"mid",ex:[{w:"سیب",i:1,r:"sib",m:"manzana"},{w:"ریشه",i:1,r:"rishe",m:"raíz"},{w:"نیاز",i:1,r:"niyāz",m:"necesidad"}]},
+  {type:"fin",note:"ـی al final forma adjetivos, el sufijo 'de' y la 1ª persona del singular.",ex:[{w:"زندگی",i:4,r:"zendegi",m:"vida"},{w:"ایرانی",i:5,r:"Irāni",m:"iraní"},{w:"می",i:1,r:"mi",m:"prefijo del presente verbal"}]},
+ ],
+ practice:[
+  {w:"شیر",r:"shir",m:"leche / león",tip:"sh + i + r. Shin + Ye(vocal) + Re."},
+  {w:"ایران",r:"Irān",m:"Irán",tip:"ā + y + r + ā + n. ¡Ya puedes leer el nombre del país!"},
+  {w:"دوستی",r:"dusti",m:"amistad",tip:"d + u + s + t + i. دوست + ی = amistad."},
+  {w:"زندگی",r:"zendegi",m:"vida",tip:"z + n + d + g + i. ¡6 letras, todas aprendidas!"},
+  {w:"یکی",r:"yeki",m:"uno (pronombre)",tip:"y + k + i. Ye + Kaf + Ye."},
+  {w:"خانه",r:"khāne",m:"casa",tip:"Repaso: kh + ā + n + h."},
+ ],
+ tip:"زندگی (zendegi = vida) — una de las palabras más bellas del persa. Aparece en muchos títulos de películas y poemas."},
+{id:33,isFinal:true,title:"¡Repaso final!",sub:"Lección 33 — Las 32 letras del alfabeto",
+ allLetters:[
+  {l:"ا",n:"Alef",r:"ā"},{l:"ب",n:"Be",r:"b"},{l:"پ",n:"Pe",r:"p"},{l:"ت",n:"Te",r:"t"},
+  {l:"ث",n:"Se",r:"s"},{l:"ج",n:"Jim",r:"j"},{l:"چ",n:"Che",r:"ch"},{l:"ح",n:"He",r:"h"},
+  {l:"خ",n:"Khe",r:"kh"},{l:"د",n:"Dal",r:"d"},{l:"ذ",n:"Zal",r:"z"},{l:"ر",n:"Re",r:"r"},
+  {l:"ز",n:"Ze",r:"z"},{l:"ژ",n:"Zhe",r:"zh"},{l:"س",n:"Sin",r:"s"},{l:"ش",n:"Shin",r:"sh"},
+  {l:"ص",n:"Sad",r:"s"},{l:"ض",n:"Zad",r:"z"},{l:"ط",n:"Ta",r:"t"},{l:"ظ",n:"Za",r:"z"},
+  {l:"ع",n:"Ain",r:"'"},{l:"غ",n:"Ghain",r:"gh"},{l:"ف",n:"Fe",r:"f"},{l:"ق",n:"Qaf",r:"q"},
+  {l:"ک",n:"Kaf",r:"k"},{l:"گ",n:"Gaf",r:"g"},{l:"ل",n:"Lam",r:"l"},{l:"م",n:"Mim",r:"m"},
+  {l:"ن",n:"Nun",r:"n"},{l:"و",n:"Vav",r:"v/u"},{l:"ه",n:"He",r:"h/e"},{l:"ی",n:"Ye",r:"y/i"},
+ ],
+ tip:"¡Felicidades! Has completado las 32 letras del alfabeto persa. Practica leyendo sílabas y palabras reales cada día."}
+];
+
+// ─── STATE ────────────────────────────────────────────────────
+let cur = 0;
+const done = new Set();
+let sbOpen = true;
+
+// Practice state per lesson (reset when lesson changes)
+let prac = { started:false, idx:0, val:'', checked:false, score:0, finished:false };
+
+// ─── HELPERS ──────────────────────────────────────────────────
+function hlWord(word, lesson) {
+  const hlChars = [lesson.letter, ...(lesson.hlExtra||[])].filter(Boolean);
+  return [...word].map(ch => hlChars.includes(ch)
+    ? `<span class="hl">${ch}</span>` : ch
+  ).join('');
+}
+
+function posCfg(type) {
+  return {
+    init:{icon:'▶',label:'AL INICIO de palabra',  cls:'init'},
+    mid: {icon:'◉',label:'EN EL MEDIO de palabra',cls:'mid'},
+    fin: {icon:'◀',label:'AL FINAL de palabra',   cls:'fin'},
+  }[type];
+}
+
+function tipBox(t) {
+  return `<div class="tip-box"><span class="tip-icon">🍎</span><span><strong style="color:#90d890">Consejo:</strong> ${t}</span></div>`;
+}
+
+function secLabel(t) {
+  return `<div class="sec-lbl">${t}</div>`;
+}
+
+// ─── PRACTICE CHECK ───────────────────────────────────────────
+function checkAnswer(input, correctRom) {
+  const accepted = correctRom.toLowerCase().split('/').map(s=>s.trim());
+  const raw = input.toLowerCase().trim();
+  return accepted.some(a => raw===a || raw===a.replace(/ā/g,'a') || raw.replace(/ā/g,'a')===a.replace(/ā/g,'a'));
+}
+
+// ─── RENDER FUNCTIONS ─────────────────────────────────────────
+function renderHlWord(word, lesson, size=46) {
+  return `<span class="prac-word ar" style="font-size:${size}px">${hlWord(word,lesson)}</span>`;
+}
+
+function renderPractice(L) {
+  if (!L.practice || !L.practice.length) return '';
+  const items = L.practice;
+
+  if (prac.finished) {
+    const pct = Math.round(prac.score / items.length * 100);
+    const emoji = pct===100?'🌟':pct>=70?'✅':'📖';
+    const msg = pct===100?'¡Perfecto! Dominas todas las palabras de esta lección.':
+                pct>=70?'¡Muy bien! Repasa las que fallaste.':'Sigue practicando. Cada repaso cuenta.';
+    return `<div class="practice-wrap">
+      <div class="practice-box">
+        <div class="prac-title" style="margin-bottom:12px">📝 Práctica acumulativa</div>
+        <div class="prac-finish-box pop">
+          <div class="prac-finish-emoji">${emoji}</div>
+          <div class="prac-finish-score">${prac.score} / ${items.length} correctas</div>
+          <div class="prac-finish-msg">${msg}</div>
+          <button class="prac-repeat-btn" onclick="practiceRepeat()">Repetir práctica</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  if (!prac.started) {
+    return `<div class="practice-wrap">
+      <div class="practice-box">
+        <div class="prac-title" style="margin-bottom:10px">📝 Práctica acumulativa</div>
+        <div class="prac-start-info">
+          <strong style="color:#c48a18">${items.length} palabras</strong> que solo usan letras ya aprendidas.
+          La letra de esta lección aparece <strong style="color:#c48a18">resaltada en dorado</strong> en cada palabra.
+          ${L.note?`<br><em style="color:#7a5838;font-size:12px">${L.note}</em>`:''}
+        </div>
+        <button class="prac-start-btn" onclick="practiceStart()">Empezar práctica</button>
+      </div>
+    </div>`;
+  }
+
+  const it = items[prac.idx];
+  // Progress dots
+  const dots = items.map((_,i)=>`<div class="prac-dot" style="width:${i===prac.idx?16:8}px;background:${i<prac.idx?'#5abf5a':i===prac.idx?'#c48a18':'#261404'}"></div>`).join('');
+
+  let inner = '';
+  if (!prac.checked) {
+    inner = `
+      <div class="prac-input-lbl">¿Cómo se pronuncia esta palabra? (escribe la transliteración)</div>
+      <div class="prac-input-row">
+        <input id="pracInput" class="prac-input" placeholder="p.ej. āb, salām, dast..."
+          value="${prac.val.replace(/"/g,'&quot;')}"
+          onkeydown="if(event.key==='Enter')practiceCheck()"
+          oninput="prac.val=this.value"/>
+        <button class="prac-btn" onclick="practiceCheck()">✓</button>
+      </div>`;
+  } else {
+    const ok = checkAnswer(prac.val, it.r);
+    inner = `
+      <div class="${ok?'ok-text':'no-text'} pop">${ok?'✅ ¡Correcto!':'❌ Era: '+it.r}</div>
+      <div class="prac-result-word pop">
+        <span class="rw ar">${it.w}</span>
+        <span class="rom">${it.r}</span>
+        <span class="mng">= ${it.m}</span>
+      </div>
+      <div style="text-align:center">
+        <button class="prac-next-btn" onclick="practiceNext()">${prac.idx<items.length-1?'Siguiente →':'Ver resultado'}</button>
+      </div>`;
+  }
+
+  return `<div class="practice-wrap">
+    <div class="practice-box">
+      <div class="prac-header">
+        <div class="prac-title">📝 Práctica acumulativa</div>
+        <div class="prac-dots">${dots}</div>
+      </div>
+      <div class="prac-word-box pop">
+        ${renderHlWord(it.w, L)}
+        <div class="prac-counter">Ejercicio ${prac.idx+1} de ${items.length}</div>
+      </div>
+      <div class="prac-tip">💡 ${it.tip}</div>
+      ${inner}
+    </div>
+  </div>`;
+}
+
+// Practice event handlers
+function practiceStart() {
+  prac = {started:true, idx:0, val:'', checked:false, score:0, finished:false};
+  renderLesson();
+  setTimeout(()=>{const el=document.getElementById('pracInput');if(el){el.focus();}}, 60);
+}
+function practiceCheck() {
+  if (!prac.val.trim()) return;
+  prac.checked = true;
+  const L = LESSONS[cur];
+  const it = L.practice[prac.idx];
+  if (checkAnswer(prac.val, it.r)) prac.score++;
+  renderLesson();
+}
+function practiceNext() {
+  const L = LESSONS[cur];
+  if (prac.idx < L.practice.length - 1) {
+    prac.idx++; prac.val=''; prac.checked=false;
+    renderLesson();
+    setTimeout(()=>{const el=document.getElementById('pracInput');if(el){el.focus();}}, 60);
+  } else {
+    prac.finished = true;
+    renderLesson();
+  }
+}
+function practiceRepeat() {
+  prac = {started:true, idx:0, val:'', checked:false, score:0, finished:false};
+  renderLesson();
+  setTimeout(()=>{const el=document.getElementById('pracInput');if(el){el.focus();}}, 60);
+}
+
+function renderLetterLesson(L) {
+  let h = '';
+  // Hero
+  h += `<div class="letter-hero">
+    <div class="letter-big">
+      <span class="lchar">${L.letter}</span>
+      <div class="lname">${L.name}</div>
+      <div class="lrom">${L.rom}</div>
+    </div>
+    <div class="letter-info">
+      <div class="info-row"><div class="ir-lbl">Sonido</div><div class="ir-val">${L.sound}</div></div>
+      <div class="info-row"><div class="ir-lbl">Descripción</div><div class="ir-val">${L.desc}</div></div>
+      <div class="info-row"><div class="ir-lbl">Cómo trazarla</div><div class="ir-val">${L.write}</div></div>
+      ${L.noConnect?`<div class="noconnect">⚠️ <strong>Rompedora de cadena:</strong> no conecta con la letra siguiente.</div>`:''}
+    </div>
+  </div>`;
+
+  // Forms
+  h += secLabel('Formas de '+L.letter);
+  h += `<div class="forms-grid">`;
+  for (const f of L.forms) {
+    h += `<div class="form-card">
+      <span class="fc-char">${f.char}</span>
+      <div class="fc-name">${f.name}</div>
+      ${f.note?`<div class="fc-note">${f.note}</div>`:''}
+    </div>`;
+  }
+  h += `</div>`;
+
+  // Positions
+  for (const pos of L.positions) {
+    const cfg = posCfg(pos.type);
+    h += `<div class="pos-section">
+      <div class="pos-header ${cfg.cls}">
+        <div class="pos-badge ${cfg.cls}">${cfg.icon}</div>
+        <div>
+          <span class="pos-label ${cfg.cls}">${cfg.label}</span>
+          ${pos.note?`<div class="pos-note">${pos.note}</div>`:''}
+        </div>
+      </div>
+      ${pos.rare?`<div class="rare-note">📌 ${pos.rare}</div>`:''}
+      <div class="ex-grid">`;
+    for (const e of pos.ex) {
+      const wArr = [...e.w];
+      const wHtml = wArr.map((ch,i)=>i===e.i?`<span class="hl">${ch}</span>`:ch).join('');
+      h += `<div class="ex-card">
+        <span class="ex-word ar">${wHtml}</span>
+        <div class="ex-rom">${e.r}</div>
+        <div class="ex-mean">${e.m}</div>
+      </div>`;
+    }
+    h += `</div></div>`;
+  }
+
+  h += tipBox(L.tip);
+  h += renderPractice(L);
+  return h;
+}
+
+function renderIntro(L) {
+  let h = `<div class="intro-hero"><span class="big-fa">فارسی</span><p>Bienvenido al Curso de Escritura Persa · Letra por Letra</p></div>`;
+  L.intro.forEach((x,i)=>{
+    h += `<div class="intro-item">
+      <div class="intro-num">${i+1}</div>
+      <div><h3>${x.h}</h3><p>${x.t}</p></div>
+    </div>`;
+  });
+  h += tipBox(L.tip);
+  return h;
+}
+
+function renderFinal(L) {
+  let h = `<div class="final-hero"><h2>🎉 ¡Has completado las 32 letras del alfabeto persa!</h2><p>34 lecciones · Una letra a la vez · Con práctica acumulativa</p></div>`;
+  h += secLabel('Las 32 letras — repaso rápido');
+  h += `<div class="alpha-grid">`;
+  for (const a of L.allLetters) {
+    h += `<div class="alpha-cell"><span class="al">${a.l}</span><div class="aln">${a.n}</div><div class="alr">/${a.r}/</div></div>`;
+  }
+  h += `</div>`;
+  h += `<div class="next-steps"><h3>📚 ¿Qué estudiar a continuación?</h3><ol>
+    <li>Practica leyendo sílabas: consonante + vocal (بَ ba, بِ be, بُ bo)</li>
+    <li>Aprende las 100 palabras más comunes del persa</li>
+    <li>Estudia los verbos básicos: رفتن (ir), آمدن (venir), خوردن (comer)</li>
+    <li>Lee palabras simples con transliteración al lado cada día</li>
+    <li>Escucha música iraní prestando atención a los sonidos</li>
+    <li>Busca textos con vocales marcadas para practicar la lectura</li>
+  </ol></div>`;
+  h += tipBox(L.tip);
+  return h;
+}
+
+function renderNav() {
+  const dots = LESSONS.map((_,i) =>
+    `<div class="nav-dot" onclick="go(${i})" style="width:${i===cur?18:7}px;background:${i===cur?'#c48a18':done.has(i)?'#7a5c10':'#261404'}"></div>`
+  ).join('');
+  return `<div class="nav-bar">
+    <button class="nav-prev" onclick="prev()" ${cur===0?'disabled':''}>← Anterior</button>
+    <div class="nav-dots">${dots}</div>
+    <button class="nav-next" onclick="next()" ${cur===LESSONS.length-1?'disabled':''}>Siguiente →</button>
+  </div>`;
+}
+
+// ─── MAIN RENDER ──────────────────────────────────────────────
+function renderLesson() {
+  const L = LESSONS[cur];
+  let body = '';
+  if (L.isIntro)    body = renderIntro(L);
+  else if (L.isFinal) body = renderFinal(L);
+  else              body = renderLetterLesson(L);
+
+  document.getElementById('content').innerHTML =
+    `<div class="ls">${L.sub||'Lección '+(cur+1)}</div>
+     <h1 class="lt">${L.title||L.letter+' — '+L.name}</h1>
+     <div class="fade-up">${body}</div>
+     ${renderNav()}`;
+}
+
+function buildSidebar() {
+  document.getElementById('sblist').innerHTML = LESSONS.map((l,i) => {
+    const icon = done.has(i)
+      ? `<span class="sb-icon" style="color:#5abf5a">✓</span>`
+      : `<span class="sb-icon" style="color:#7a5838">${i}.</span>`;
+    const label = l.title || `${l.letter} — ${l.name}`;
+    return `<button class="sb-btn${i===cur?' active':''}" onclick="go(${i})">${icon}${label}</button>`;
+  }).join('');
+}
+
+function updateProgress() {
+  const pct = Math.round(done.size / LESSONS.length * 100);
+  document.getElementById('pgfill').style.width = pct+'%';
+  document.getElementById('pglabel').textContent = pct+'% completado';
+}
+
+// ─── NAVIGATION ───────────────────────────────────────────────
+function go(i) {
+  cur = i;
+  prac = {started:false, idx:0, val:'', checked:false, score:0, finished:false};
+  buildSidebar();
+  renderLesson();
+  document.getElementById('main').scrollTop = 0;
+  window.scrollTo(0,0);
+}
+function next() {
+  done.add(cur);
+  updateProgress();
+  if (cur < LESSONS.length-1) go(cur+1);
+}
+function prev() {
+  if (cur > 0) go(cur-1);
+}
+function toggleSB() {
+  sbOpen = !sbOpen;
+  document.getElementById('sidebar').classList.toggle('closed', !sbOpen);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+buildSidebar();
+renderLesson();
+</script>
+</body>
+</html>

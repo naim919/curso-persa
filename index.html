@@ -91,14 +91,17 @@ h1.lt{font-family:'Crimson Pro',serif;font-size:27px;font-weight:600;color:#f0dd
 .form-card .fc-note{font-size:10px;color:#7a5838;margin-top:2px;}
 
 /* POSITIONS */
-.pos-section{margin-bottom:20px;}
-.pos-header{display:flex;align-items:center;gap:10px;border-radius:8px;
-  padding:10px 14px;margin-bottom:10px;}
-.pos-header.init{background:#071507;border:1px solid #1a4a1a;}
-.pos-header.mid{background:#1a0e00;border:1px solid #4a2808;}
-.pos-header.fin{background:#060f1a;border:1px solid #0a3060;}
-.pos-badge{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.pos-section{margin-bottom:26px;border-radius:12px;overflow:hidden;border:1px solid #261404;}
+.pos-section.init{border-color:#1a4a1a;}
+.pos-section.mid{border-color:#4a2808;}
+.pos-section.fin{border-color:#0a3060;}
+
+.pos-header{display:flex;align-items:center;gap:10px;padding:10px 14px;}
+.pos-header.init{background:#071507;}
+.pos-header.mid{background:#1a0e00;}
+.pos-header.fin{background:#060f1a;}
+.pos-badge{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;}
 .pos-badge.init{background:#1a5018;}
 .pos-badge.mid{background:#c48a18;}
 .pos-badge.fin{background:#0a3868;}
@@ -106,15 +109,75 @@ h1.lt{font-family:'Crimson Pro',serif;font-size:27px;font-weight:600;color:#f0dd
 .pos-label.init{color:#5abf5a;}
 .pos-label.mid{color:#e0a820;}
 .pos-label.fin{color:#4a9adf;}
-.pos-note{font-size:12px;color:#7a5838;margin-top:2px;}
-.rare-note{background:#1e1200;border:1px solid #5a3800;border-radius:7px;
-  padding:8px 12px;font-size:12.5px;color:#c08830;margin-bottom:8px;}
-.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px;}
-.ex-card{background:#1c1004;border:1px solid #261404;border-radius:9px;
-  padding:13px 14px;text-align:center;}
+.pos-note{font-size:11.5px;color:#7a5838;margin-top:2px;}
+
+/* FORM SHOWCASE — the big form display inside each position block */
+.form-showcase{display:flex;align-items:center;gap:0;padding:14px 16px 12px;border-bottom:1px solid #261404;}
+.form-showcase.init{background:#0a1e0a;border-color:#1a4a1a;}
+.form-showcase.mid{background:#1e1200;border-color:#4a2808;}
+.form-showcase.fin{background:#090f1e;border-color:#0a3060;}
+.form-showcase-left{flex-shrink:0;text-align:center;padding-right:16px;border-right:1px solid #261404;}
+.form-showcase.init .form-showcase-left{border-color:#1a4a1a;}
+.form-showcase.mid .form-showcase-left{border-color:#4a2808;}
+.form-showcase.fin .form-showcase-left{border-color:#0a3060;}
+.form-name-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.form-name-tag.init{color:#3a8a3a;}
+.form-name-tag.mid{color:#8a6010;}
+.form-name-tag.fin{color:#1a5080;}
+.form-big-char{font-family:'Noto Naskh Arabic','Amiri',serif;direction:rtl;display:block;
+  font-size:58px;line-height:1;}
+.form-big-char.init{color:#5abf5a;}
+.form-big-char.mid{color:#e0a820;}
+.form-big-char.fin{color:#4a9adf;}
+.form-showcase-right{flex:1;padding-left:16px;}
+.form-showcase-desc{font-size:12px;color:#7a5838;line-height:1.6;margin-bottom:4px;}
+.form-showcase-arrow{font-size:11px;color:#5a3810;margin-bottom:6px;}
+
+.rare-note{background:#1e1200;border:1px solid #5a3800;border-radius:0;
+  padding:8px 16px;font-size:12.5px;color:#c08830;}
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0;
+  background:#0d0700;}
+.ex-card{background:#1c1004;border-right:1px solid #261404;border-bottom:1px solid #261404;
+  padding:14px 14px;text-align:center;}
+.ex-card:last-child{border-right:none;}
 .ex-word{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:34px;direction:rtl;
   color:#f0ddb0;line-height:1.2;display:block;margin-bottom:4px;}
-.ex-word .hl{color:#c48a18;font-weight:700;}
+/* 
+  CRITICAL: Do NOT add font-weight or font-size to .hl inside Arabic text.
+  Changing font-weight forces the browser to switch font faces, which creates
+  a "shaping boundary" and breaks Arabic letter joining (the letter renders in
+  isolated form instead of its correct initial/medial/final form).
+  Only color + underline are safe — they don't change the font metrics.
+*/
+.ex-word .hl{
+  color:#c48a18;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  text-decoration-thickness:2px;
+  text-decoration-color:rgba(196,138,24,.55);
+}
+
+/* Form badge shown on each example card */
+.ex-form-badge{
+  display:inline-block;
+  font-family:'Noto Naskh Arabic','Amiri',serif;
+  font-size:20px;
+  direction:rtl;
+  background:rgba(196,138,24,.12);
+  border:1px solid rgba(196,138,24,.3);
+  border-radius:6px;
+  padding:2px 8px;
+  margin-bottom:6px;
+  line-height:1.3;
+}
+.ex-form-badge.init{color:#5abf5a;border-color:rgba(90,191,90,.35);background:rgba(90,191,90,.08);}
+.ex-form-badge.mid {color:#e0a820;border-color:rgba(224,168,32,.35);background:rgba(224,168,32,.08);}
+.ex-form-badge.fin {color:#4a9adf;border-color:rgba(74,154,223,.35);background:rgba(74,154,223,.08);}
+.ex-form-name{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;}
+.ex-form-name.init{color:#3a8a3a;}
+.ex-form-name.mid{color:#8a6010;}
+.ex-form-name.fin{color:#1a5080;}
+
 .ex-rom{font-size:12.5px;color:#c48a18;font-style:italic;margin-bottom:2px;}
 .ex-mean{font-size:13px;color:#7a5838;}
 
@@ -163,7 +226,7 @@ h1.lt{font-family:'Crimson Pro',serif;font-size:27px;font-weight:600;color:#f0dd
   margin-bottom:14px;border:1px solid #261404;}
 .prac-word{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:46px;direction:rtl;
   color:#f0ddb0;line-height:1.2;}
-.prac-word .hl{color:#c48a18;font-weight:700;}
+.prac-word .hl{color:#c48a18;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px;}
 .prac-counter{font-size:11px;color:#7a5838;margin-top:6px;}
 .prac-tip{font-size:12px;color:#7a5838;font-style:italic;margin-bottom:12px;padding:0 4px;}
 .prac-input-lbl{font-size:12.5px;color:#b89060;margin-bottom:6px;}
@@ -273,9 +336,9 @@ const LESSONS = [
  write:"Dibuja la curva horizontal (el cuenco). Añade un punto debajo del centro.",
  forms:[{char:"ب",name:"Aislada"},{char:"بـ",name:"Inicial"},{char:"ـبـ",name:"Media"},{char:"ـب",name:"Final"}],
  positions:[
-  {type:"init",ex:[{w:"باد",i:0,r:"bād",m:"viento"},{w:"بهار",i:0,r:"bahār",m:"primavera"},{w:"برادر",i:0,r:"barādar",m:"hermano"}]},
-  {type:"mid",ex:[{w:"سبز",i:1,r:"sabz",m:"verde"},{w:"تبریز",i:1,r:"Tabriz",m:"Tabriz (ciudad)"},{w:"نبات",i:1,r:"nabāt",m:"caramelo"}]},
-  {type:"fin",ex:[{w:"کتاب",i:3,r:"ketāb",m:"libro"},{w:"آب",i:1,r:"āb",m:"agua"},{w:"شب",i:1,r:"shab",m:"noche"}]},
+  {type:"init",form:"بـ",ex:[{w:"باد",i:0,r:"bād",m:"viento"},{w:"بهار",i:0,r:"bahār",m:"primavera"},{w:"برادر",i:0,r:"barādar",m:"hermano"}]},
+  {type:"mid",form:"ـبـ",ex:[{w:"سبز",i:1,r:"sabz",m:"verde"},{w:"تبریز",i:1,r:"Tabriz",m:"Tabriz (ciudad)"},{w:"نبات",i:1,r:"nabāt",m:"caramelo"}]},
+  {type:"fin",form:"ـب",ex:[{w:"کتاب",i:3,r:"ketāb",m:"libro"},{w:"آب",i:1,r:"āb",m:"agua"},{w:"شب",i:1,r:"shab",m:"noche"}]},
  ],
  practice:[
   {w:"آب",r:"āb",m:"agua",tip:"ā + b. La primera sílaba que aprende todo estudiante."},
@@ -1017,21 +1080,47 @@ function renderLetterLesson(L) {
   </div>`;
 
   // Forms
-  h += secLabel('Formas de '+L.letter);
+  h += secLabel('Las '+L.forms.length+' formas de '+L.letter+' según su posición');
   h += `<div class="forms-grid">`;
   for (const f of L.forms) {
-    h += `<div class="form-card">
-      <span class="fc-char">${f.char}</span>
-      <div class="fc-name">${f.name}</div>
+    // color-code form cards to match position sections
+    let borderColor = '#261404', charColor = '#f0ddb0', namColor = '#a87848';
+    if (f.name.includes('Inic')) { borderColor='#1a4a1a'; charColor='#5abf5a'; namColor='#3a8a3a'; }
+    else if (f.name.includes('Medi') || f.name.includes('medi')) { borderColor='#4a2808'; charColor='#e0a820'; namColor='#8a6010'; }
+    else if (f.name.includes('Final') && !f.name.includes('Aislada')) { borderColor='#0a3060'; charColor='#4a9adf'; namColor='#1a5080'; }
+    h += `<div class="form-card" style="border-color:${borderColor}">
+      <span class="fc-char" style="color:${charColor}">${f.char}</span>
+      <div class="fc-name" style="color:${namColor}">${f.name}</div>
       ${f.note?`<div class="fc-note">${f.note}</div>`:''}
     </div>`;
   }
   h += `</div>`;
+  h += `<div style="font-size:11.5px;color:#5a3810;margin-bottom:16px;padding:0 2px">
+    ↓ A continuación, cada forma en acción con ejemplos reales
+  </div>`;
 
-  // Positions
+  // Positions — each block shows the specific form large + examples
+  const posFormDesc = {
+    init: 'Forma que toma la letra al INICIO de palabra, conectando con la siguiente.',
+    mid:  'Forma que toma la letra en el MEDIO de palabra, conectada a ambos lados.',
+    fin:  'Forma que toma la letra al FINAL de palabra, conectada solo por la derecha.',
+  };
+  const posFormLabel = { init:'Forma inicial', mid:'Forma medial', fin:'Forma final' };
+
   for (const pos of L.positions) {
     const cfg = posCfg(pos.type);
-    h += `<div class="pos-section">
+    // Find the matching form for this position — use pos.form if provided, else search forms array
+    const formNames = { init:['Inicial','Inicial'], mid:['Media','Medial'], fin:['Final'] };
+    const matchForm = L.forms.find(f => {
+      const n = f.name;
+      if (pos.type==='init') return n.includes('Inicial') && !n.includes('Final');
+      if (pos.type==='mid')  return n.includes('Media') || n.includes('Medial');
+      if (pos.type==='fin')  return n.includes('Final') && !n.includes('Aislada');
+      return false;
+    });
+    const formChar = pos.form || (matchForm ? matchForm.char : L.letter);
+
+    h += `<div class="pos-section ${cfg.cls}">
       <div class="pos-header ${cfg.cls}">
         <div class="pos-badge ${cfg.cls}">${cfg.icon}</div>
         <div>
@@ -1039,12 +1128,25 @@ function renderLetterLesson(L) {
           ${pos.note?`<div class="pos-note">${pos.note}</div>`:''}
         </div>
       </div>
+      <div class="form-showcase ${cfg.cls}">
+        <div class="form-showcase-left">
+          <div class="form-name-tag ${cfg.cls}">${posFormLabel[pos.type]}</div>
+          <span class="form-big-char ${cfg.cls}">${formChar}</span>
+        </div>
+        <div class="form-showcase-right">
+          <div class="form-showcase-desc">${posFormDesc[pos.type]}</div>
+          <div class="form-showcase-arrow">↓ En cada ejemplo verás esta forma con subrayado dorado en la palabra real</div>
+        </div>
+      </div>
       ${pos.rare?`<div class="rare-note">📌 ${pos.rare}</div>`:''}
       <div class="ex-grid">`;
+    const posNameShort = {init:'forma inicial', mid:'forma medial', fin:'forma final'};
     for (const e of pos.ex) {
       const wArr = [...e.w];
       const wHtml = wArr.map((ch,i)=>i===e.i?`<span class="hl">${ch}</span>`:ch).join('');
       h += `<div class="ex-card">
+        <div class="ex-form-name ${cfg.cls}">${posNameShort[pos.type]}</div>
+        <span class="ex-form-badge ${cfg.cls}">${formChar}</span>
         <span class="ex-word ar">${wHtml}</span>
         <div class="ex-rom">${e.r}</div>
         <div class="ex-mean">${e.m}</div>
